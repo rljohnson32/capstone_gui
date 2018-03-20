@@ -1,14 +1,17 @@
 var dowURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^DJI&apikey=87NRCGVHUZZVF8HR"
 var nasURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^IXIC&apikey=87NRCGVHUZZVF8HR"
 var spURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^GSPC&apikey=87NRCGVHUZZVF8HR"
+var baseURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="
+var baseURLEND = "&apikey=87NRCGVHUZZVF8HR";
 var lastClose = '';
 var addedSymbols = [];
+var addedPairs = [];
 
 
 $(document).ready(function($) {
   //setLastClose();
   updateStocks();
-  setInterval(updateStocks, refreshRate*60000); //Update the stocks every 5 minutes.
+  setInterval(updateStocks, 1*60000); //Update the stocks every 1 minutes.
 });
 
 function updateStocks(){
@@ -31,13 +34,13 @@ function updateStocks(){
         var cur = close - prevClose;
         var curPercent = (cur / prevClose)*100;
         var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#dow").html(curPercentRounded + '%');
+        $("#DJI").html(curPercentRounded + '%');
         if(cur < 0){
           //$("#dow").style.color = "red";
-          document.getElementById('dow').style.color = "red";
+          document.getElementById('DJI').style.color = "red";
         }
         else{
-          document.getElementById('dow').style.color = "green";
+          document.getElementById('DJI').style.color = "green";
         }
      })
      .catch(function(err) {
@@ -65,13 +68,13 @@ function updateStocks(){
         var cur = close - prevClose;
         var curPercent = (cur / prevClose)*100;
         var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#nas").html(curPercentRounded + '%');
+        $("#IXIC").html(curPercentRounded + '%');
         if(cur < 0){
           //$("#dow").style.color = "red";
-          document.getElementById('nas').style.color = "red";
+          document.getElementById('IXIC').style.color = "red";
         }
         else{
-          document.getElementById('nas').style.color = "green";
+          document.getElementById('IXIC').style.color = "green";
         }
      })
      .catch(function(err) {
@@ -99,24 +102,67 @@ function updateStocks(){
         var cur = close - prevClose;
         var curPercent = (cur / prevClose)*100;
         var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#sp").html(curPercentRounded + '%');
+        $("#GSPC").html(curPercentRounded + '%');
         if(cur < 0){
           //$("#dow").style.color = "red";
-          document.getElementById('sp').style.color = "red";
+          document.getElementById('GSPC').style.color = "red";
         }
         else{
-          document.getElementById('sp').style.color = "green";
+          document.getElementById('GSPC').style.color = "green";
         }
      })
      .catch(function(err) {
       console.log('ERROR FETCHING DOW DATA:', err);
       //$("#weather").html(html);
   });
+}
 
+function updateAdded(){
   //loop through and add symbols
-  if(addedSymbols.length != 0){
-
+  for(var i = 0; i < addedPairs.length; i++){
+    var curPair = addedPairs[i];
+    var curURL = curPair['URL'];
+    var curSymbol = curPair['SYMBOL'];
+    updateAddedHTML(curURL, curSymbol);
   }
+}
+
+function updateAddedHTML(curURL, curSymbol){
+  //console.log("curURL: " + curURL + "curSymbol: " + curSymbol);
+  fetch(curURL)
+    .then((resp) => resp.json())
+     .then(function(data) {
+
+        var html;
+        jsond = data;
+        var timeSeries = data['Time Series (Daily)'];
+        var metadata = data['Meta Data'];
+        var today = metadata['3. Last Refreshed'];
+        if(lastClose == ''){
+          lastClose = setLastClose(today);
+        }
+        var todayData = timeSeries[today];
+        var lastData = timeSeries[lastClose];
+        var close = todayData['4. close'];
+        var prevClose = lastData['4. close'];
+        var cur = close - prevClose;
+        var curPercent = (cur / prevClose)*100;
+        var curPercentRounded = Math.round(100*curPercent)/100;
+        $("#"+curSymbol).html(curPercentRounded + '%');
+        if(cur < 0){
+          //$("#dow").style.color = "red";
+          document.getElementById(curSymbol).style.color = "red";
+        }
+        else{
+          document.getElementById(curSymbol).style.color = "green";
+        }
+     })
+     .catch(function(err) {
+      console.log('ERROR FETCHING' + curSymbol + ' DATA:', err);
+      //$("#weather").html(html);
+  });
+
+
 }
 
 function setLastClose(lastRefresh) {
@@ -127,19 +173,8 @@ function setLastClose(lastRefresh) {
     var weekday = '' + d.getDay();
     //alert(weekday);
 
-    //check if today is sunday or monday or saturday (no trading on the day before those days)
-    if(weekday == 0){
-      d.setDate(d.getDate()-2);
-      var month = '' + (d.getMonth() + 1);
-      var day = '' + d.getDate();
-      var year = d.getFullYear();
-
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-
-      return [year, month, day].join('-');
-    }
-    else if(weekday == 1){
+    //check if last refreshed day is monday (no trading on the day before so prev day should be friday)
+    if(weekday == 1){
       d.setDate(d.getDate()-3);
       var month = '' + (d.getMonth() + 1);
       var day = '' + d.getDate();
@@ -151,7 +186,7 @@ function setLastClose(lastRefresh) {
       return [year, month, day].join('-');
     }
 
-    else if(weekday == 6){
+    else{
       d.setDate(d.getDate()-1);
       var month = '' + (d.getMonth() + 1);
       var day = '' + d.getDate();
@@ -162,4 +197,37 @@ function setLastClose(lastRefresh) {
 
       return [year, month, day].join('-');
     }
+}
+
+function addSymbol(){
+  var symbol = $("#newstock").val().toUpperCase();
+  var url = baseURL + symbol + baseURLEND;
+    
+  var newReq = new Request(url);
+  fetch(newReq)
+    .then((resp) => resp.json())
+     .then(function(data) {
+        //alert("valid symbol");
+        var html;
+        jsonnew = data;
+        if(data.hasOwnProperty('Error Message')){
+          alert(symbol + ": INVALID SYMBOL");
+          return;
+        }
+        else if(addedSymbols.includes(symbol)){
+          alert("Already added: " + symbol);
+          return;
+        }
+        else{
+          addedSymbols.push(symbol);
+          var html = '<li>' + symbol + ':&nbsp&nbsp&nbsp<span id="' + symbol + '"></span></li>';
+          $('#stocklist').append(html);
+          addedPairs.push({"URL":url, "SYMBOL":symbol});
+          updateAdded();
+        }
+     })
+     .catch(function(err) {
+      console.log('ERROR VALIDATING NEW SYMBOL DATA:', err);
+  });
+  
 }

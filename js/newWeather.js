@@ -3,7 +3,9 @@ var lat = 0;
 var long = 0;
 var curLocReq = 0;
 var zip = 0;
-var baseURL = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/"
+var city = '';
+var state = '';
+var baseURLw = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/"
 var query;
 var URL;
 var madisonURL = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/WI/Madison.json"
@@ -21,14 +23,17 @@ function updateWeather(){
     if(zip != 0){
       query = zip;
     }
+    else if(city+state != ''){
+      query = state + '/' + city;
+    }
     else{
-      query = 53029;
+      query = 90210;
     }
   }
   else{
     query = 'autoip';
   }
-  URL = baseURL + query + urlEnd;
+  URL = baseURLw + query + urlEnd;
 
   var req = new Request(URL);
   fetch(req)
@@ -53,8 +58,11 @@ function updateWeather(){
           html += '<li>Current Temp: '+temp_f+'</li>';
           html += '<li>Feels Like: '+feelsLike+'</li></ul>';
           //html += '<img src=' + icon +'></br>';
-          html += 'Zip Code: </br><input type="number" id="zip">'
+          html += 'Zip Code:  </br><input type="number" id="zip">'
           html += '<input type="submit" onclick="getZip()" value="Update"></br>'
+          html += 'City:  </br><input type="text" id="city"></br>'
+          html += 'State:  </br><input type="text" id="state">'
+          html += '<input type="submit" onclick="getCity()" value="Update"></br>'
           html += '<button onclick="getLocation()" >Display Weather at Current Location</button>'
 
           html += '<h2>5 Day Forecast</h2>';
@@ -73,92 +81,19 @@ function updateWeather(){
        .catch(function(err) {
         console.log('ERROR FETCHING WEATHER DATA:', err);
         html = '<p>Error Fetching Weather Data</p>';
-        html += 'Location: <input type="number" id="zip">'
+        html += 'Zip Code: </br><input type="number" id="zip">'
         html += '<input type="submit" onclick="getZip()" value="Update"></br>'
+        html += 'City:  </br><input type="text" id="city">'
+        html += '<input type="submit" onclick="getCity()" value="Update"></br>'
         html += '<button onclick="getLocation()">Display Weather at Current Location</button>'
         $("#weather").html(html);
     });
 }
 
-
-
-
-
-// function getWeather() {
-//   var loc;
-//   if(lat == 0 || long == 0){
-//     if(zip != 0){
-//       loc = zip;
-//     }
-//     else{
-//       loc = 53029;
-//     }
-//   }
-//   else{
-//     loc = lat+","+long;
-//   }
-//   $.simpleWeather({
-//     location: loc,
-//     unit: 'f',
-//     success: function(weather) {
-//       console.log(weather);
-//       html = '<h2>'+weather.city+', '+weather.region+'</h2>';
-//       html += 'Location: <input type="text" id="zip">'
-//       html += '<input type="submit" onclick="getZip()" value="Update"></br>'
-//      // html += '<button onclick="getZip()">Update</button></br>'
-//       html += '<button onclick="getLocation()" >Display Weather at Current Location</button>'
-
-
-//       //html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-//       //html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-//       html += '<ul>';
-//       html += '<li class="currently">'+weather.currently+'</li>';
-//       html += '<li>Current Temp: '+weather.temp+'&deg;'+weather.units.temp+'</li>';
-//       html += '<li>Wind Chill: '+weather.wind.chill+'&deg;'+weather.units.temp+'</li></ul>';
-
-//       //var timestamp = moment(weather.updated);
-//       //html += '<p>Weather updated at '+moment(timestamp).format('h:mma')+'</p>';
-
-//       html += '<img src=' + weather.image +'></br>';
-//       html += '<h2>5 Day Forecast</h2>';
-//       html += '<ul>';
-//         for (i = 1; i < 6; i++) { 
-//           html += '<li>'+weather.forecast[i].day+ ': </li>';
-//           html += weather.forecast[i].text+'</br>';
-//           html += 'High Temp: ' + weather.forecast[i].high;
-//         }
-//       html += '</ul>';
-//       html += '<p>Weather updated every ' + refreshRate+ ' minutes</p>';
-//       // for(var i=0;i<weather.forecast.length;i++) {
-//       //   html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
-//       // }
-      
-
-//       $("#weather").html(html);
-//     },
-//     error: function(error) {
-//       html = '<p>'+error+'</p>';
-//       html += '<button onclick="getLocation()">Display Weather at Current Location</button>'
-//       $("#weather").html(html);
-//     }
-//   });
-// }
-// getWeather();
-
 function getLocation() {
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(function(position) {
-    //   lat = position.coords.latitude;
-    //   long = position.coords.longitude; //load weather using your lat/lng coordinates
-    //   zip = 0
-    //   console.log("lat: " + lat);
-    //   console.log("long: " + long);
-    //   updateWeather();
-    // });
-    // } else { 
-    //     console.log("Geolocation is not supported by this browser.");
-    // }
     zip = 0;
+    city = '';
+    state = '';
     curLocReq = 1;
     updateWeather();
 }
@@ -169,11 +104,30 @@ function getZip() {
   if(isValidZip){
     zip = uncheckedzip;
     curLocReq = 0;
+    city = '';
+    state = '';
   }
   else{
     zip = 0;
   }
   console.log("Submitted zip: "+ zip);
+  updateWeather();
+
+}
+
+function getCity() {
+  
+  //console.log($("#state").val()=='');
+  if($("#state").val()!='' && $("#city").val()!=''){
+    city = $("#city").val();
+    state = $("#state").val();
+    zip = 0;
+    curLocReq = 0;
+  }
+  else{
+    zip = 0;
+  }
+  console.log("Submitted Loc: "+ city + ', ' + state);
   updateWeather();
 
 }

@@ -5,6 +5,7 @@ var req = new Request(url);
 var json;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
+var curLimit = 5;
 
 var formHtml =  '<h4>'+'Select A Category'+'</h4>'+
                 '<select id=\'drop\' oninput="updateURL()">\
@@ -26,7 +27,7 @@ $(document).ready(function() {
 
 function updateURL(){
   category = document.getElementById("drop").value;
-  catSelected = 1;
+  curLimit = 5;
   if(category == "none"){
     url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' +
@@ -58,32 +59,14 @@ function updateNews(){
         	var html = '<h2>'+'National News'+'</h2>';
           html += formHtml;
         	html += '<ul>';
-        	for (i = 0; i < 5; i++) { 
-      		  html += '<li>'+json.articles[i].title+'</li>';
-      		  html += '<a href="'+ json.articles[i].url +'" target="_blank">Link To Article</a></br></br>';
+        	for (i = 0; i < curLimit; i++) { 
+      		  html += '<li>'+json.articles[i].title+'<a href="'+ json.articles[i].url +'" target="_blank"><img class="img-thumbnail" src=' + json.articles[i].urlToImage +'></a></br></br></li>';
+      		  // html += '<a href="'+ json.articles[i].url +'" target="_blank">Link To Article</a></br></br>';
           //Ideas:
           //
   		    }
   		    html += '</ul>';
-
-
-        //}
-        // else{
-
-        //   // <form>
-        //   // <input type="radio" name="gender" value="male" checked> Male<br>
-        //   // <input type="radio" name="gender" value="female"> Female<br>
-        //   // <input type="radio" name="gender" value="other"> Other  
-        //   // </form>
-        //   html = '<h2>'+'National News'+'</h2>';
-        //   html += formHtml;
-        // }
-
-
-        	
-        	//html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-        	//html += '<li class="currently">'+weather.currently+'</li>';
-        	//html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+          html += '<button onclick="showMore()" >Show More</button>'
     
         $("#news").html(html);
         category = document.getElementById("drop").value = category;
@@ -93,6 +76,11 @@ function updateNews(){
        .catch(function(err) {
       console.log('Fetch Error :-S', err);
     });
+}
+
+function showMore(){
+  curLimit += 5; 
+  updateNews();
 }
 
 /*
