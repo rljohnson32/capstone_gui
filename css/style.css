@@ -1,0 +1,166 @@
+
+/* 
+  Look inspired by http://www.degreees.com/ 
+  Used for demo purposes.
+
+  Weather icon font from http://fonts.artill.de/collection/artill-weather-icons
+
+  DO NOT hotlink the assets/font included in this demo. If you wish to use the same font icon then download it to your local assets at the link above. If you use the links below odds are at some point they will be removed and your version will break.
+*/
+
+header {
+    width: 100%;
+    height: 100px;
+    /*background: aqua;*/
+    margin-left: 10px;
+    padding: 10px;
+}
+div#clock {
+    width: 20%;
+    height: 70px;
+    /*background: red;*/
+    float: left;
+}
+#greeting {
+    /*margin-left: 15%;*/
+    /*height: 70px;*/
+    /*background: red;*/
+    /*text-align: 50%;*/
+    /*float: left;*/
+    margin-left: 20px;
+    width: 30%;
+}
+
+div#timer {
+    width: 25%;
+    height: 70px;
+    /*background: red;*/
+    float: left;
+}
+
+div#stocks {
+    width: 25%;
+    height: 110px;
+
+
+    /*background: red;*/
+    float: left;
+    margin-left: 25px;
+}
+  #stocks h4{
+    text-align: center;
+  }
+
+#quote{
+  margin-left: 20px;
+  width: 30%;
+}
+ 
+ #weather{
+   position:absolute;
+   top:0;
+   right:0;
+   float: right;
+   margin-right: 20px;
+   margin-top: 10px;
+   border:1px solid black;
+  max-width: 100%;
+  overflow-x: hidden;
+  }
+   #weather p{
+   text-align: center;
+   font-style: italic;
+   font-size: 75%;
+  }
+
+   #weather li{
+   font-style: bold;
+   font-size: 125%;
+  }
+
+  #weather h2{
+    text-align: center;
+  }
+
+  body{
+    background-color:black;
+    color:white;
+  }
+
+/*  #clock{
+    padding-left: 20px;
+    border:1px solid black;
+    width: 50%;
+
+  }*/
+
+  #news{
+    width: 30%;
+    float: left;
+    border:1px solid black;
+    margin-left: 20px;
+  }
+  #news h2{
+    text-align: center;
+  }
+
+  #sports{
+  width: 30%;
+  float: left;
+  /*padding-left: 20px;*/
+  margin-left: 20px;
+  border:1px solid black;
+}
+
+    #sports h2{
+    text-align: center;
+  }
+
+  .google{
+    margin-left: 20px;
+    border:1px solid black;
+    width: 30%;
+  }
+
+/*  #greeting{
+    float: left;
+    text-align: center;
+  }*/
+
+/*body {
+  font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: #0091c2;
+}
+
+#weather {
+  width: 4000px;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#weather h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 150px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weather ul {
+  margin: 0;
+  padding: 0;
+}
+
+#weather li {
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  padding: 20px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+#weather .currently {
+  margin: 0 20px;
+}*/
