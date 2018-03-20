@@ -22,7 +22,7 @@
       <!-- <div id="greeting"></div> -->
     <div id="timer">
         <h4>Set a Timer</h4>
-        Minutes: <input type="number" id="timefortimer">
+        Minutes: </br><input type="number" id="timefortimer">
         <input type="submit" onclick="setTimer()" value="Set"></br>
         <audio id="alarm" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
     </div>
@@ -33,11 +33,13 @@
             <li>NASDAQ:&nbsp&nbsp&nbsp<span id="nas"></span></li>
             <li>S&P 500:&nbsp&nbsp&nbsp<span id="sp"></span></li>
         </ul>
+    Add New Symbol: </br><input type="text" id="newstock">
+    <input type="submit" onclick="addStock()" value="Add">
 
     </div>
     </header>
     <div id="quote"></div>
-    </br>
+    <!-- </br> -->
     <!-- Google code for calandar -->
     <!--Add buttons to initiate auth sequence and sign out-->
     <h2 style="margin-left: 20px">Google Calandar</h2>
@@ -50,7 +52,7 @@
     <script src="../js/google.js"></script>
     <script src="../js/newWeather.js"></script>
     <script src="../js/news.js"></script>
-    <script src="../js/sports.js"></script>
+    <!-- <script src="../js/sports.js"></script> -->
     <script src="../js/clock.js"></script>
     <script src="../js/quote.js"></script>
     <script src="../js/stocks.js"></script>
@@ -64,6 +66,6 @@
     <!-- <h2 id="weatherTitle">Weather</h2> -->
     <div id="weather"></div>
     <div id="news"></div>
-    <div id="sports"></div>
+    <!-- <div id="sports"></div> -->
   </body>
 </html>

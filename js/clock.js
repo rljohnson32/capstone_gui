@@ -62,8 +62,6 @@ function updateClock(){
 	}
 
 	$("#clock").html(html);
-	//$("#clock").html(timeString + '</br>' + weekDay + ', ' + month + ' ' + day);
-	//return timeString;
 }
 
 function updateGreeting(){
@@ -80,7 +78,6 @@ function updateGreeting(){
 	else{
 		html = '<h2>Good Evening!</h2>';
 	}
-	//html += '<p>' + quote + '</br> Author: ' + author;
 	$("#greeting").html(html);
 
 }
@@ -101,9 +98,7 @@ function setTimer(){
 }
 
 function timerDone(){
-	//alert("TIMER IS DONE!");
 		document.getElementById('alarm').play();
-		//setTimeout(timerDone, 10*1000);
 }
 
 function clearTimer(){
@@ -111,6 +106,7 @@ function clearTimer(){
 		timerRunning = 0;
 		document.getElementById('alarm').pause();
 		$("#timer1").remove();
+		document.getElementById('timefortimer').value = '';
 	}
 }
 

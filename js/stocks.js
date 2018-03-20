@@ -2,6 +2,7 @@ var dowURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbo
 var nasURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^IXIC&apikey=87NRCGVHUZZVF8HR"
 var spURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^GSPC&apikey=87NRCGVHUZZVF8HR"
 var lastClose = '';
+var addedSymbols = [];
 
 
 $(document).ready(function($) {
@@ -111,6 +112,11 @@ function updateStocks(){
       console.log('ERROR FETCHING DOW DATA:', err);
       //$("#weather").html(html);
   });
+
+  //loop through and add symbols
+  if(addedSymbols.length != 0){
+
+  }
 }
 
 function setLastClose(lastRefresh) {

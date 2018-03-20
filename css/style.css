@@ -48,7 +48,8 @@ div#stocks {
     margin-left: 25px;
 }
   #stocks h4{
-    text-align: center;
+   /* text-align: center;*/
+   margin-left: 30px;
   }
 
 #quote{
@@ -63,7 +64,7 @@ div#stocks {
    float: right;
    margin-right: 20px;
    margin-top: 10px;
-   border:1px solid black;
+   /*border:1px solid black;*/
   max-width: 100%;
   overflow-x: hidden;
   }
@@ -97,7 +98,7 @@ div#stocks {
   #news{
     width: 30%;
     float: left;
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin-left: 20px;
   }
   #news h2{
@@ -109,7 +110,7 @@ div#stocks {
   float: left;
   /*padding-left: 20px;*/
   margin-left: 20px;
-  border:1px solid black;
+  /*border:1px solid black;*/
 }
 
     #sports h2{

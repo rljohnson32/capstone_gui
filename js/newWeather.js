@@ -53,7 +53,7 @@ function updateWeather(){
           html += '<li>Current Temp: '+temp_f+'</li>';
           html += '<li>Feels Like: '+feelsLike+'</li></ul>';
           //html += '<img src=' + icon +'></br>';
-          html += 'Zip Code: <input type="number" id="zip">'
+          html += 'Zip Code: </br><input type="number" id="zip">'
           html += '<input type="submit" onclick="getZip()" value="Update"></br>'
           html += '<button onclick="getLocation()" >Display Weather at Current Location</button>'
 
