@@ -6,6 +6,7 @@ var baseURLEND = "&apikey=87NRCGVHUZZVF8HR";
 var lastClose = '';
 var addedSymbols = [];
 var addedPairs = [];
+var updatedOnce = false;
 
 
 $(document).ready(function($) {
@@ -23,109 +24,113 @@ function updateStocks(){
   if (hour   > 12) { hour = hour - 12;      }
   if (hour   == 0) { hour = 12;             }
   if (minute < 10) { minute = "0" + minute; }
-  $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
 
-  var reqDow = new Request(dowURL);
-  fetch(reqDow)
-    .then((resp) => resp.json())
-     .then(function(data) {
+  if(hour < 5 || !updatedOnce){
+    updatedOnce = true;
+    $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
 
-        var html;
-        jsond = data;
-        var timeSeries = data['Time Series (Daily)']
-        var metadata = data['Meta Data'];
-        var today = metadata['3. Last Refreshed'];
-        lastClose = setLastClose(today);
-        //alert(lastClose);
-        var todayData = timeSeries[today];
-        var lastData = timeSeries[lastClose];
-        var close = todayData['4. close'];
-        var prevClose = lastData['4. close'];
-        var cur = close - prevClose;
-        var curPercent = (cur / prevClose)*100;
-        var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#DJI").html(curPercentRounded + '%');
-        if(cur < 0){
-          //$("#dow").style.color = "red";
-          document.getElementById('DJI').style.color = "red";
-        }
-        else{
-          document.getElementById('DJI').style.color = "green";
-        }
-     })
-     .catch(function(err) {
-      console.log('ERROR FETCHING DOW DATA:', err);
-      //$("#weather").html(html);
-  });
+    var reqDow = new Request(dowURL);
+    fetch(reqDow)
+      .then((resp) => resp.json())
+       .then(function(data) {
 
-  var reqNas = new Request(nasURL);
-  fetch(reqNas)
-    .then((resp) => resp.json())
-     .then(function(data) {
-
-        var html;
-        jsond = data;
-        var timeSeries = data['Time Series (Daily)'];
-        var metadata = data['Meta Data'];
-        var today = metadata['3. Last Refreshed'];
-        if(lastClose == ''){
+          var html;
+          jsond = data;
+          var timeSeries = data['Time Series (Daily)']
+          var metadata = data['Meta Data'];
+          var today = metadata['3. Last Refreshed'];
           lastClose = setLastClose(today);
-        }
-        var todayData = timeSeries[today];
-        var lastData = timeSeries[lastClose];
-        var close = todayData['4. close'];
-        var prevClose = lastData['4. close'];
-        var cur = close - prevClose;
-        var curPercent = (cur / prevClose)*100;
-        var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#IXIC").html(curPercentRounded + '%');
-        if(cur < 0){
-          //$("#dow").style.color = "red";
-          document.getElementById('IXIC').style.color = "red";
-        }
-        else{
-          document.getElementById('IXIC').style.color = "green";
-        }
-     })
-     .catch(function(err) {
-      console.log('ERROR FETCHING DOW DATA:', err);
-      //$("#weather").html(html);
-  });
+          //alert(lastClose);
+          var todayData = timeSeries[today];
+          var lastData = timeSeries[lastClose];
+          var close = todayData['4. close'];
+          var prevClose = lastData['4. close'];
+          var cur = close - prevClose;
+          var curPercent = (cur / prevClose)*100;
+          var curPercentRounded = Math.round(100*curPercent)/100;
+          $("#DJI").html(curPercentRounded + '%');
+          if(cur < 0){
+            //$("#dow").style.color = "red";
+            document.getElementById('DJI').style.color = "red";
+          }
+          else{
+            document.getElementById('DJI').style.color = "green";
+          }
+       })
+       .catch(function(err) {
+        console.log('ERROR FETCHING DOW DATA:', err);
+        //$("#weather").html(html);
+    });
 
-  var reqSp = new Request(spURL);
-  fetch(reqSp)
-    .then((resp) => resp.json())
-     .then(function(data) {
+    var reqNas = new Request(nasURL);
+    fetch(reqNas)
+      .then((resp) => resp.json())
+       .then(function(data) {
 
-        var html;
-        jsonsp = data;
-        var timeSeries = data['Time Series (Daily)'];
-        var metadata = data['Meta Data'];
-        var today = metadata['3. Last Refreshed'].substring(0,10);//substring0-10;
-        if(lastClose == ''){
-          lastClose = setLastClose(today);
-        }
-        var todayData = timeSeries[today];
-        var lastData = timeSeries[lastClose];
-        var close = todayData['4. close'];
-        var prevClose = lastData['4. close'];
-        var cur = close - prevClose;
-        var curPercent = (cur / prevClose)*100;
-        var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#GSPC").html(curPercentRounded + '%');
-        if(cur < 0){
-          //$("#dow").style.color = "red";
-          document.getElementById('GSPC').style.color = "red";
-        }
-        else{
-          document.getElementById('GSPC').style.color = "green";
-        }
-     })
-     .catch(function(err) {
-      console.log('ERROR FETCHING DOW DATA:', err);
-      //$("#weather").html(html);
-  });
-  updateAdded();
+          var html;
+          jsond = data;
+          var timeSeries = data['Time Series (Daily)'];
+          var metadata = data['Meta Data'];
+          var today = metadata['3. Last Refreshed'];
+          if(lastClose == ''){
+            lastClose = setLastClose(today);
+          }
+          var todayData = timeSeries[today];
+          var lastData = timeSeries[lastClose];
+          var close = todayData['4. close'];
+          var prevClose = lastData['4. close'];
+          var cur = close - prevClose;
+          var curPercent = (cur / prevClose)*100;
+          var curPercentRounded = Math.round(100*curPercent)/100;
+          $("#IXIC").html(curPercentRounded + '%');
+          if(cur < 0){
+            //$("#dow").style.color = "red";
+            document.getElementById('IXIC').style.color = "red";
+          }
+          else{
+            document.getElementById('IXIC').style.color = "green";
+          }
+       })
+       .catch(function(err) {
+        console.log('ERROR FETCHING DOW DATA:', err);
+        //$("#weather").html(html);
+    });
+
+    var reqSp = new Request(spURL);
+    fetch(reqSp)
+      .then((resp) => resp.json())
+       .then(function(data) {
+
+          var html;
+          jsonsp = data;
+          var timeSeries = data['Time Series (Daily)'];
+          var metadata = data['Meta Data'];
+          var today = metadata['3. Last Refreshed'].substring(0,10);//substring0-10;
+          if(lastClose == ''){
+            lastClose = setLastClose(today);
+          }
+          var todayData = timeSeries[today];
+          var lastData = timeSeries[lastClose];
+          var close = todayData['4. close'];
+          var prevClose = lastData['4. close'];
+          var cur = close - prevClose;
+          var curPercent = (cur / prevClose)*100;
+          var curPercentRounded = Math.round(100*curPercent)/100;
+          $("#GSPC").html(curPercentRounded + '%');
+          if(cur < 0){
+            //$("#dow").style.color = "red";
+            document.getElementById('GSPC').style.color = "red";
+          }
+          else{
+            document.getElementById('GSPC').style.color = "green";
+          }
+       })
+       .catch(function(err) {
+        console.log('ERROR FETCHING DOW DATA:', err);
+        //$("#weather").html(html);
+    });
+    updateAdded();
+  }
 }
 
 function updateAdded(){
