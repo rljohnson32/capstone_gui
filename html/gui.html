@@ -45,6 +45,8 @@
     </div>
     </header>
     <div id="quote"></div>
+    <input id="newquote" type="submit" onclick="updateQuote()" value="New Quote"></br>
+
     <!-- </br> -->
     <!-- Google code for calandar -->
     <!--Add buttons to initiate auth sequence and sign out-->
@@ -53,8 +55,8 @@
         <ul class = "google" id="events"></ul>
     </div>
     <i id="lug">Last Updated: <span id="lastEventUpdate"></span></i>
-    <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none;">Authorize</button>
-    <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none;">Sign Out</button>
+    <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none; width: 100px;">Authorize</button>
+    <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none; width: 100px;">Sign Out</button>
     </br>
 
     <!-- Custom JS files -->

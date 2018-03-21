@@ -413,15 +413,16 @@ var quotes2 = [
 var quotesComb = quotes.concat(quotes2);
 
 //console.log(quotes[1].author);
-var quoteIndex = Math.floor(Math.random() * quotesComb.length);
-var quote = quotesComb[quoteIndex].quote;
-var author = quotesComb[quoteIndex].author;
+
 
 $(document).ready(function() {  
   updateQuote();
 });
 
 function updateQuote(){
+	var quoteIndex = Math.floor(Math.random() * quotesComb.length);
+	var quote = quotesComb[quoteIndex].quote;
+	var author = quotesComb[quoteIndex].author;
 
 	var html;
 	html = '<h4>Daily Quote</h4>'

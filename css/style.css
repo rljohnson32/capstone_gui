@@ -71,6 +71,12 @@ div#stocks {
   margin-left: 20px;
   width: 30%;
 }
+
+#newquote{
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
  
  #weather{
    position:absolute;

@@ -73,7 +73,7 @@ function updateWeather(){
           html += '<input type="submit" onclick="getCity()" value="Update"></br>';
           html += '<button onclick="getLocation()" >Current Location</button>';
           html += '</div>'
-          html += '<input id="toggler" type="submit" onclick="toggleForm()" value="Update"></br>';
+          html += '<input id="toggler" type="submit" onclick="toggleForm()" value="Change"></br>';
 
           html += '<h2>5 Day Forecast</h2>';
           html += '<ul>';
@@ -122,7 +122,7 @@ function updateLastUpdate(){
 function toggleForm(){
   $('#weatherForm').toggle();
   if ( $('#weatherForm').css('display') == 'none' ){
-     $('#toggler').val("Update");
+     $('#toggler').val("Change");
   }
   else{
     $('#toggler').val("Hide Form");
