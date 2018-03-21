@@ -43,6 +43,10 @@ div#timer {
     margin-left: 70px;
 }
 
+#soundPicker{
+  margin-bottom: 10px;
+}
+
 div#stocks {
     width: 25%;
     height: 110px;
@@ -68,6 +72,7 @@ div#stocks {
   }
 
 #quote{
+  margin-top: 40px;
   margin-left: 20px;
   width: 30%;
 }

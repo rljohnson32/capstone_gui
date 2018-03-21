@@ -22,11 +22,24 @@
       <!-- <div id="greeting"></div> -->
     <div id="timer">
         <h4>Timer</h4>
+        <select id="soundPicker" oninput="updateSound()">
+                      <option value="1"> Default<br>
+                      <option value="2"> Watch<br>
+                      <option value="3"> Alien<br>
+                      <option value="4"> Bomb Siren<br>
+                      <option value="5"> Fire<br>
+                      <option value="6"> Rooster<br>
+        </select></br>
         Minutes: &nbsp<input type="text" size="4" maxlength="2" max="59" id="minsfortimer" placeholder="0-59"></br>
         Seconds: <input type="text" size="4" maxlength="2" max="59" id="secsfortimer" placeholder="0-59">
         <input type="submit" onclick="setTimer()" value="Set"></br>
         <div id="countdown"></div>
-        <audio id="alarm" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
+        <audio id="alarm1" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
+        <audio id="alarm2" src="../resources/analog-watch-alarm_daniel-simion.wav" preload="auto"></audio>
+        <audio id="alarm3" src="../resources/Alien_Siren-KevanGC-610357990.wav" preload="auto"></audio>
+        <audio id="alarm4" src="../resources/BOMB_SIREN-BOMB_SIREN-247265934.wav" preload="auto"></audio>
+        <audio id="alarm5" src="../resources/Fire Alarm-SoundBible.com-78848779.wav" preload="auto"></audio>
+        <audio id="alarm6" src="../resources/Rooster-SoundBible.com-1114473528.wav" preload="auto"></audio>
     </div>
     <div id="stocks">
         <h4>Stocks</h4>
