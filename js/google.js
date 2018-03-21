@@ -50,6 +50,7 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
+          setInterval(listUpcomingEvents, 30*60000); //Update the events every 30 minutes.
           listUpcomingEvents();
         } else {
           authorizeButton.style.display = 'block';
@@ -62,6 +63,10 @@
        *  Sign in the user upon button click.
        */
       function handleAuthClick(event) {
+        if($('#eventlist').css('display') == 'none'){
+          toggleEvents();
+        }
+        
         gapi.auth2.getAuthInstance().signIn();
       }
 
@@ -69,6 +74,8 @@
        *  Sign out the user upon button click.
        */
       function handleSignoutClick(event) {
+        toggleEvents();
+        $('#events').html('');
         gapi.auth2.getAuthInstance().signOut();
       }
 
@@ -78,10 +85,13 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
-        var pre = document.getElementById('events');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+      function appendPre(message, time) {
+        //var pre = document.getElementById('events');
+        var html = '<li><b>' + message + '</b> ' + time + '</li>';
+        $('#events').append(html);
+
+        //var textContent = document.createTextNode(message + '\n');
+        //pre.appendChild(textContent);
       }
 
       /**
@@ -95,11 +105,21 @@
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
-          'maxResults': 10,
+          'maxResults': 6,
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          appendPre('Upcoming events:');
+          //appendPre('Upcoming events:');
+
+          var d = new Date();
+          var houru   = d.getHours();
+          var minuteu = d.getMinutes();
+          var apu = "AM";
+          if (houru   > 11) { apu = "PM";             }
+          if (houru   > 12) { houru = houru - 12;      }
+          if (houru   == 0) { houru = 12;             }
+          if (minuteu < 10) { minuteu= "0" + minuteu; }
+          $('#lastEventUpdate').html(houru + ':' + minuteu + ' ' + apu);
 
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
@@ -109,11 +129,28 @@
               var when = event.start.dateTime;
               if (!when) {
                 when = event.start.date;
+                //alert(when);
               }
-              appendPre(event.summary + ' (' + when + ')')
+              var ap = "AM";
+              if (hour   > 11) { ap = "PM";             }
+              var d = new Date(when);
+              var hour   = d.getHours();
+              var minute = d.getMinutes();
+              var month = d.getMonth()+1;
+              var day = d.getDate();
+              if (hour   > 12) { hour = hour - 12;      }
+              if (hour   == 0) { hour = 12;             }
+              if (minute < 10) { minute = "0" + minute; }
+              when = month + '/' + day + ' ' + hour + ':' + minute + ' ' + ap;
+              //console.log(d);
+              appendPre(event.summary, when);
             }
           } else {
             appendPre('No upcoming events found.');
           }
         });
       }
+
+function toggleEvents(){
+  $('#eventlist').toggle();
+}

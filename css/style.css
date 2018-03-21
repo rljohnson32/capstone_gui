@@ -36,6 +36,11 @@ div#timer {
     height: 70px;
     /*background: red;*/
     float: left;
+    margin-left: 20px;
+}
+
+#timer h4 {
+    margin-left: 70px;
 }
 
 div#stocks {
@@ -45,11 +50,21 @@ div#stocks {
 
     /*background: red;*/
     float: left;
-    margin-left: 25px;
+    margin-left: 10px;
 }
+
+#stocklist{
+  margin-bottom: 5px;
+}
+
   #stocks h4{
    /* text-align: center;*/
-   margin-left: 30px;
+   margin-left: 40px;
+  }
+
+  #stockForm{
+    margin-top: 10px;
+    margin-left: 40px;
   }
 
 #quote{
@@ -83,6 +98,11 @@ div#stocks {
     text-align: center;
   }
 
+  #currentWeatherList{
+    margin-bottom: 5px;
+  }
+
+
   body{
     background-color:black;
     color:white;
@@ -105,6 +125,12 @@ div#stocks {
     text-align: center;
   }
 
+#showMoreButton{
+  display: block; 
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
   #sports{
   width: 30%;
   float: left;
@@ -119,8 +145,12 @@ div#stocks {
 
   .google{
     margin-left: 20px;
-    border:1px solid black;
+    /*border:1px solid black;*/
     width: 30%;
+  }
+
+  #lug{
+    margin-left: 20px;
   }
 
 /*  #greeting{

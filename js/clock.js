@@ -82,20 +82,28 @@ function updateGreeting(){
 
 }
 
-function setTimer(){
-	if(timerRunning == 0){
-		timerRunning = 1;
-		var timerduration = ($("#timefortimer").val())*60*1000;
-		setTimeout(timerDone, timerduration);
-		var html;
-		html = '<p id="timer1">Timer: ' + $("#timefortimer").val() + ' Minutes  <input type="submit" onclick="clearTimer()" value="Clear"></p>';
-		$("#timer").append(html);	
-	}
-	else{
-		alert("A timer is already running");
-	}
+// function setTimer(){
+// 	if(timerRunning == 0){
+		
+// 		var minutes = parseInt($("#minsfortimer").val());
+// 		var seconds = parseInt($("#secsfortimer").val());
+// 		alert(minutes + seconds);
+// 		if(minutes != 0 || seconds != 0){
+// 			var timerduration = (minutes*60+seconds)*1000;
+// 			setTimeout(timerDone, timerduration);
+// 			var html;
+// 			html = '<p id="timer1">Timer: ' + minutes + ' Minutes  ' + seconds + ' seconds <input type="submit" onclick="clearTimer()" value="Clear"></p>';
+// 			$("#timer").append(html);
+// 		}
+// 		else{
+// 			return;
+// 		}	
+// 	}
+// 	else{
+// 		alert("A timer is already running");
+// 	}
 
-}
+// }
 
 function timerDone(){
 		document.getElementById('alarm').play();
@@ -103,12 +111,93 @@ function timerDone(){
 
 function clearTimer(){
 	if(timerRunning){
+		clearInterval(x);
 		timerRunning = 0;
 		document.getElementById('alarm').pause();
-		$("#timer1").remove();
-		document.getElementById('timefortimer').value = '';
+		//$("#timer1").remove();
+		$("#countdown").html('');
+		document.getElementById('minsfortimer').value = '';
+		document.getElementById('secsfortimer').value = '';
 	}
 }
+
+var x;
+
+function setTimer(){
+	if(timerRunning == 0){
+
+		//need, month, day, year, hour min sec
+		var minutes = parseInt($("#minsfortimer").val());
+		var seconds = parseInt($("#secsfortimer").val());
+		if(isNaN(minutes)){
+			minutes = 0;
+		}
+		if(isNaN(seconds)){
+			seconds = 0;
+		}
+
+		if(minutes != 0 || seconds != 0){
+			timerRunning = 1;
+			var now = new Date().getTime();
+			var end = now + (minutes*60+seconds+1)*1000;
+			x = setInterval(function(){
+				//if(timerRunning == 0){clearInterval(x)}
+				var nowMil = new Date().getTime();
+				var distance = end - nowMil;
+				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	    		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	    		if (minutes < 10) { minutes = "0" + minutes; }
+				if (seconds < 10) { seconds = "0" + seconds; }
+				var html;
+				html = '<b><p id="timer1">Timer: ' + minutes + ':' + seconds + ' <input type="submit" onclick="clearTimer()" value="Clear"></p></b>';
+				$("#countdown").html(html);
+				
+				if(distance <= 1000){
+					clearInterval(x);
+					timerDone();
+				}
+
+			}, 1000);
+		}
+		else{
+			$("#minsfortimer").val('');
+			$("#secsfortimer").val('');
+			return;
+		}
+	}
+	else{
+		$("#minsfortimer").val('');
+		$("#secsfortimer").val('');
+		alert("A timer is already running");
+	}
+
+}
+
+// // Update the count down every 1 second
+// var x = setInterval(function() {
+
+//     // Get todays date and time
+//     var now = new Date().getTime();
+    
+//     // Find the distance between now an the count down date
+//     var distance = countDownDate - now;
+    
+//     // Time calculations for days, hours, minutes and seconds
+//     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+//     // Output the result in an element with id="demo"
+//     document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+//     + minutes + "m " + seconds + "s ";
+    
+//     // If the count down is over, write some text 
+//     if (distance < 0) {
+//         clearInterval(x);
+//         document.getElementById("demo").innerHTML = "EXPIRED";
+//     }
+// }, 1000);
 
 
 

@@ -15,6 +15,16 @@ $(document).ready(function($) {
 });
 
 function updateStocks(){
+  var d = new Date();
+  var hour   = d.getHours();
+  var minute = d.getMinutes();
+  var ap = "AM";
+  if (hour   > 11) { ap = "PM";             }
+  if (hour   > 12) { hour = hour - 12;      }
+  if (hour   == 0) { hour = 12;             }
+  if (minute < 10) { minute = "0" + minute; }
+  $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
+
   var reqDow = new Request(dowURL);
   fetch(reqDow)
     .then((resp) => resp.json())
@@ -115,6 +125,7 @@ function updateStocks(){
       console.log('ERROR FETCHING DOW DATA:', err);
       //$("#weather").html(html);
   });
+  updateAdded();
 }
 
 function updateAdded(){
@@ -211,11 +222,13 @@ function addSymbol(){
         var html;
         jsonnew = data;
         if(data.hasOwnProperty('Error Message')){
+          $("#newstock").val('');
           alert(symbol + ": INVALID SYMBOL");
           return;
         }
         else if(addedSymbols.includes(symbol)){
           alert("Already added: " + symbol);
+          $("#newstock").val('');
           return;
         }
         else{
@@ -223,6 +236,7 @@ function addSymbol(){
           var html = '<li>' + symbol + ':&nbsp&nbsp&nbsp<span id="' + symbol + '"></span></li>';
           $('#stocklist').append(html);
           addedPairs.push({"URL":url, "SYMBOL":symbol});
+          $("#newstock").val('');
           updateAdded();
         }
      })

@@ -56,7 +56,7 @@ function updateNews(){
           //if(catSelected){
 
         	json = data;
-        	var html = '<h2>'+'National News'+'</h2>';
+        	var html = '<h2>'+'Top Stories'+'</h2>';
           html += formHtml;
         	html += '<ul>';
         	for (i = 0; i < curLimit; i++) { 
@@ -66,7 +66,7 @@ function updateNews(){
           //
   		    }
   		    html += '</ul>';
-          html += '<button onclick="showMore()" >Show More</button>'
+          html += '<button id="showMoreButton" onclick="showMore()" >Show More</button>'
     
         $("#news").html(html);
         category = document.getElementById("drop").value = category;

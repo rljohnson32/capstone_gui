@@ -21,9 +21,11 @@
       <div id="clock"></div>
       <!-- <div id="greeting"></div> -->
     <div id="timer">
-        <h4>Set a Timer</h4>
-        Minutes: </br><input type="number" id="timefortimer">
+        <h4>Timer</h4>
+        Minutes: &nbsp<input type="text" size="4" maxlength="2" max="59" id="minsfortimer" placeholder="0-59"></br>
+        Seconds: <input type="text" size="4" maxlength="2" max="59" id="secsfortimer" placeholder="0-59">
         <input type="submit" onclick="setTimer()" value="Set"></br>
+        <div id="countdown"></div>
         <audio id="alarm" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
     </div>
     <div id="stocks">
@@ -33,8 +35,12 @@
             <li>NASDAQ:&nbsp&nbsp&nbsp<span id="IXIC"></span></li>
             <li>S&P 500:&nbsp&nbsp&nbsp<span id="GSPC"></span></li>
         </ul>
-    Add New Symbol: </br><input type="text" id="newstock">
-    <input type="submit" onclick="addSymbol()" value="Add">
+    <i>Last Updated: <span id="lastStockUpdate"></span></i>
+</br>
+    <div id="stockForm">
+        Add Symbol: </br><input type="text" size="6" maxlength="5" id="newstock">
+        <input type="submit" onclick="addSymbol()" value="Add">
+    </div>
 
     </div>
     </header>
@@ -42,10 +48,13 @@
     <!-- </br> -->
     <!-- Google code for calandar -->
     <!--Add buttons to initiate auth sequence and sign out-->
-    <h2 style="margin-left: 20px">Google Calandar</h2>
-    <pre class = "google" id="events"></pre>
-    <button class = "google" id="authorize-button" style="display: none;">Authorize</button>
-    <button class = "google" id="signout-button" style="display: none;">Sign Out</button>
+    <h2 style="margin-left: 20px">Upcoming Events</h2>
+    <div id="eventlist">
+        <ul class = "google" id="events"></ul>
+    </div>
+    <i id="lug">Last Updated: <span id="lastEventUpdate"></span></i>
+    <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none;">Authorize</button>
+    <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none;">Sign Out</button>
     </br>
 
     <!-- Custom JS files -->

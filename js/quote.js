@@ -425,6 +425,6 @@ function updateQuote(){
 
 	var html;
 	html = '<h4>Daily Quote</h4>'
-	html += '<p><b>' + quote + '</b></br> <i>-' + author + '</i></p>';
+	html += '<p>\"' + quote + '\"</br> <i>-' + author + '</i></p>';
 	$("#quote").html(html);
 }
