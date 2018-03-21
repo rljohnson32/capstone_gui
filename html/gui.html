@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
     <!-- <script src='https://cdn.rawgit.com/monkeecreate/jquery.simpleWeather/master/jquery.simpleWeather.min.js'></script> -->
     <!-- <script src="../js/simpleWeather.js"></script> -->
 
@@ -42,12 +44,34 @@
         <audio id="alarm6" src="../resources/Rooster-SoundBible.com-1114473528.wav" preload="auto"></audio>
     </div>
     <div id="stocks">
-        <h4>Stocks</h4>
+<!--         <h4>Stocks</h4>
         <ul id="stocklist">
             <li>DOW J:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="DJI"></span></li>
             <li>NASDAQ:&nbsp&nbsp&nbsp<span id="IXIC"></span></li>
             <li>S&P 500:&nbsp&nbsp&nbsp<span id="GSPC"></span></li>
-        </ul>
+        </ul> -->
+
+        <table id="stocklist">
+          <tr>
+            <th colspan="3">Stocks</th>
+          </tr>
+          <tr>
+            <td>DOW J</td>
+            <td id="DJI"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>NASDAQ</td>
+            <td id="IXIC"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>S&P 500</td>
+            <td id="GSPC">123</td>
+            <td></td>
+            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
+          </tr>
+        </table>
     <i>Last Updated: <span id="lastStockUpdate"></span></i>
 </br>
     <div id="stockForm">

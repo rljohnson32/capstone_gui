@@ -98,10 +98,10 @@ function updateStocks(){
      .then(function(data) {
 
         var html;
-        jsond = data;
+        jsonsp = data;
         var timeSeries = data['Time Series (Daily)'];
         var metadata = data['Meta Data'];
-        var today = metadata['3. Last Refreshed'];
+        var today = metadata['3. Last Refreshed'].substring(0,10);//substring0-10;
         if(lastClose == ''){
           lastClose = setLastClose(today);
         }
@@ -148,12 +148,14 @@ function updateAddedHTML(curURL, curSymbol){
         jsond = data;
         var timeSeries = data['Time Series (Daily)'];
         var metadata = data['Meta Data'];
-        var today = metadata['3. Last Refreshed'];
+        var today = metadata['3. Last Refreshed'].substring(0,10);//substring0-10;;
         if(lastClose == ''){
           lastClose = setLastClose(today);
         }
         var todayData = timeSeries[today];
+        //console.log("todayData: " + todayData);
         var lastData = timeSeries[lastClose];
+        //console.log("lastData: " + lastData);
         var close = todayData['4. close'];
         var prevClose = lastData['4. close'];
         var cur = close - prevClose;
@@ -233,8 +235,11 @@ function addSymbol(){
         }
         else{
           addedSymbols.push(symbol);
-          var html = '<li>' + symbol + ':&nbsp&nbsp&nbsp<span id="' + symbol + '"></span></li>';
+          //var html = '<li>' + symbol + ':&nbsp&nbsp&nbsp<span id="' + symbol + '"></span></li>';
+          var html = '<tr><td>' + symbol + '</td><td id="' + symbol + '"></td><td><button id="' + symbol + 'rm" class="btn"><i class="fa fa-close"></i></button></td></tr>'
           $('#stocklist').append(html);
+          var button = document.getElementById(symbol+'rm');
+          button.setAttribute('onclick', 'removeStock(this)');
           addedPairs.push({"URL":url, "SYMBOL":symbol});
           $("#newstock").val('');
           updateAdded();
@@ -245,3 +250,23 @@ function addSymbol(){
   });
   
 }
+
+
+function removeStock(row){
+  var Tab = document.getElementById('stocklist');
+  Tab.deleteRow(row.parentNode.parentNode.rowIndex);
+  //addedSymbols.pop();
+  var symboltoremove = row.id.replace('rm','');
+  var url = baseURL + symboltoremove + baseURLEND;
+  var index1 = addedSymbols.indexOf(symboltoremove);
+  var index2 = addedPairs.indexOf({"URL":url, "SYMBOL":symboltoremove});
+  if (index1 > -1) {
+    addedSymbols.splice(index1, 1);
+  }
+  if (index2 > -1) {
+    addedPairs.splice(index2, 1);
+  }
+  //console.log(row.id);
+  //alert("removing " + row);
+}
+

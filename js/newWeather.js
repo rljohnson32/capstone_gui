@@ -13,6 +13,13 @@ var testURL = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forec
 var urlEnd = ".json"
 var jsonw;
 var lastTimeWeatherUpdated;
+var curTemp;
+var curCond;
+var curCity;
+var rainPercent;
+// var weatherDescription;
+// var location;
+// var temp_f;
 
 $(document).ready(function($) {
   updateLastUpdate();
@@ -46,12 +53,18 @@ function updateWeather(){
           var html;
           jsonw = data;
           var location = data.current_observation.display_location.full;
+          curCity = data.current_observation.display_location.city;
           var temp_f = data.current_observation.temp_f.toString().substring(0,2) + '&deg;'+' F';
+          curTemp = data.current_observation.temp_f.toString().substring(0,2);
           var feelsLike = data.current_observation.feelslike_string.substring(0,2) + '&deg;'+' F';
           var desc = data.current_observation.icon;
           var weatherDescription = desc.charAt(0).toUpperCase() + desc.slice(1);
+          curCond = weatherDescription;
           var icon = data.current_observation.icon_url;
           var forecast = data.forecast.simpleforecast.forecastday;
+          var rainChance = forecast[0].pop;
+          rainPercent = rainChance + " pecent";
+
           //alert("Current temperature in " + location + " is: " + temp_f);
           html = '<h2>'+location+'</h2>';
 
@@ -59,8 +72,10 @@ function updateWeather(){
           html += '<ul>';
           html += '<li class="currently">'+weatherDescription+' <img src=' + icon +'></li>';
           html += '<li>Current Temp: '+temp_f+'</li>';
-          html += '<li>Feels Like: '+feelsLike+'</li></ul>';
-          html += '</div>'
+          html += '<li>Feels Like: '+feelsLike+'</li>';
+          html += '<li>Chance of Rain: '+rainChance+'%</li></ul>';
+          html += '</div>';
+          html += '<input id="speak" type="submit" onclick="sayCurrentWeather()" value="Speak Weather"></br>';
 
           html += '<i>Last Updated: <span id="lastWeatherUpdate">'+ lastTimeWeatherUpdated +'</span></i></br></br>';
           //html += '<img src=' + icon +'></br>';
@@ -80,9 +95,9 @@ function updateWeather(){
           
           for (i = 1; i < 6; i++) { 
             html += '<li><b>'+forecast[i].date.weekday_short+ ':<img src=' + forecast[i].icon_url +'></b></li>';
-            //html += '<img src=' + forecast[i].icon_url +'></br>';
             html += forecast[i].conditions+'</br>';
-            html += 'High Temp: ' + forecast[i].high.fahrenheit + '&deg;'+' F';
+            html += 'High Temp: ' + forecast[i].high.fahrenheit + '&deg;'+' F</br>';
+            html += 'Chance of Rain: '+forecast[i].pop+'%</br>';
           }
           html += '</ul>';
           html += '<p>Weather updated every ' + refreshRate+ ' minutes</p>';
@@ -100,7 +115,11 @@ function updateWeather(){
         $("#weather").html(html);
     });
   updateLastUpdate();
-  //alert("bottom of update");
+}
+
+function sayCurrentWeather(){
+  var curWeatherString = "It is currently " + curTemp + " degrees and " + curCond + " in " + curCity + ". There is a " + rainPercent + " chance of rain today";
+  responsiveVoice.speak(curWeatherString, "US English Female");
 }
 
 function updateLastUpdate(){

@@ -27,9 +27,9 @@ var curAlarm = "1";
 
 $(document).ready(function() {  
   updateClock(); //Set initial time on page load
-  updateGreeting();
+  //updateGreeting();
   setInterval(updateClock, 1000); // update the time every second
-  setInterval(updateGreeting, 1800000); //update greeting every 30 minutes
+  // setInterval(updateGreeting, 1800000); //update greeting every 30 minutes
 });
 
 function updateClock(){
@@ -54,34 +54,46 @@ function updateClock(){
 	html += '<b>'+weekDay + ', ' + month + ' ' + day+'</b>';
 
 	if(now.getHours() < 12){
-		html += '<p>Good Morning!</p>';
+		html += '<p>Good Morning!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
 	}
 	else if(now.getHours() < 16){
-		html += '<p>Good Afternoon!</p>';
+		html += '<p>Good Afternoon!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
 	}
 	else{
-		html += '<p>Good Evening!</p>';
+		html += '<p>Good Evening!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
 	}
+
+	//html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br>';
 
 	$("#clock").html(html);
 }
 
-function updateGreeting(){
-	var html;
+function sayCurrentTime(){
+	var now    = new Date();
+	var hour   = now.getHours();
+	var minute = now.getMinutes();
+	var second = now.getSeconds();
+	var ap = "AM";
+	if (hour   > 11) { ap = "PM";             }
+	if (hour   > 12) { hour = hour - 12;      }
+	if (minute < 10) { minute = "0" + minute; }
+	var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting() + " Rob!";
+	responsiveVoice.speak(curTimeString, "US English Female");
+}
+
+function getGreeting(){
 	var now    = new Date();
 	var hour   = now.getHours();
 
 	if(hour < 12){
-		html = '<h2>Good Morning!</h2>';
+		return 'Good Morning';
 	}
 	else if(hour < 16){
-		html = '<h2>Good Afternoon!</h2>';
+		return 'Good Afternoon';
 	}
 	else{
-		html = '<h2>Good Evening!</h2>';
+		return 'Good Evening';
 	}
-	$("#greeting").html(html);
-
 }
 
 // function setTimer(){
