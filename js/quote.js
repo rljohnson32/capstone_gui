@@ -418,14 +418,22 @@ var quotesComb = quotes.concat(quotes2);
 $(document).ready(function() {  
   updateQuote();
 });
+var quoteIndex;
+var quote;
+var author;
 
 function updateQuote(){
-	var quoteIndex = Math.floor(Math.random() * quotesComb.length);
-	var quote = quotesComb[quoteIndex].quote;
-	var author = quotesComb[quoteIndex].author;
+	quoteIndex = Math.floor(Math.random() * quotesComb.length);
+	quote = quotesComb[quoteIndex].quote;
+	author = quotesComb[quoteIndex].author;
 
 	var html;
 	html = '<h4>Daily Quote</h4>'
 	html += '<p>\"' + quote + '\"</br> <i>-' + author + '</i></p>';
 	$("#quote").html(html);
+}
+
+function sayQuote(){
+  var quoteString = quote + " " + author;
+  responsiveVoice.speak(quoteString, "US English Female");
 }
