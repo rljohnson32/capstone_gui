@@ -57,13 +57,14 @@ function updateWeather(){
           var temp_f = data.current_observation.temp_f.toString().substring(0,2) + '&deg;'+' F';
           curTemp = data.current_observation.temp_f.toString().substring(0,2);
           var feelsLike = data.current_observation.feelslike_string.substring(0,2) + '&deg;'+' F';
-          var desc = data.current_observation.icon;
-          var weatherDescription = desc.charAt(0).toUpperCase() + desc.slice(1);
+          //var desc = data.current_observation.icon;
+          //var weatherDescription = desc.charAt(0).toUpperCase() + desc.slice(1);
+          var weatherDescription = data.current_observation.weather;
           curCond = weatherDescription;
           var icon = data.current_observation.icon_url;
           var forecast = data.forecast.simpleforecast.forecastday;
           var rainChance = forecast[0].pop;
-          rainPercent = rainChance + " pecent";
+          rainPercent = rainChance + " percent";
 
           //alert("Current temperature in " + location + " is: " + temp_f);
           html = '<h2>'+location+'</h2>';
