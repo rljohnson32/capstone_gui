@@ -1,7 +1,10 @@
 # capstone_gui
 
 To run GUI:
-1. Clone Repo
-2. run: python -m SimpleHTTPServer 8000
-3. open browser and navigate to: http://localhost:8000/html/gui.html 
+```console
+~$ git clone https://github.com/rljohnson32/capstone_gui.git
+~$ cd capstone_gui/
+~$ python -m SimpleHTTPServer 8000
+```
+Navigate to: http://localhost:8000/html/gui.html
 
