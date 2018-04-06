@@ -119,8 +119,12 @@ function updateWeather(){
 }
 
 function sayCurrentWeather(){
-  var curWeatherString = "It is currently " + curTemp + " degrees and " + curCond + " in " + curCity + ". There is a " + rainPercent + " chance of rain today";
-  responsiveVoice.speak(curWeatherString, "US English Female");
+  //console.log("IN CURRENT WEATHER FUNCTION");
+  if(!responsiveVoice.isPlaying()) {
+    var curWeatherString = "It is currently " + curTemp + " degrees and " + curCond + " in " + curCity + ". There is a " + rainPercent + " chance of rain today";
+    responsiveVoice.speak(curWeatherString, "US English Female");
+  }
+
 }
 
 function updateLastUpdate(){

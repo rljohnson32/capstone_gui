@@ -69,16 +69,18 @@ function updateClock(){
 }
 
 function sayCurrentTime(){
-	var now    = new Date();
-	var hour   = now.getHours();
-	var minute = now.getMinutes();
-	var second = now.getSeconds();
-	var ap = "AM";
-	if (hour   > 11) { ap = "PM";             }
-	if (hour   > 12) { hour = hour - 12;      }
-	if (minute < 10) { minute = "0" + minute; }
-	var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting() + " Rob!";
-	responsiveVoice.speak(curTimeString, "US English Female");
+	if(!responsiveVoice.isPlaying()) {
+		var now    = new Date();
+		var hour   = now.getHours();
+		var minute = now.getMinutes();
+		var second = now.getSeconds();
+		var ap = "AM";
+		if (hour   > 11) { ap = "PM";             }
+		if (hour   > 12) { hour = hour - 12;      }
+		if (minute < 10) { minute = "0" + minute; }
+		var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting() + " Rob!";
+		responsiveVoice.speak(curTimeString, "US English Female");
+	}
 }
 
 function getGreeting(){

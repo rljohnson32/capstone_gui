@@ -434,6 +434,8 @@ function updateQuote(){
 }
 
 function sayQuote(){
-  var quoteString = quote + " " + author;
-  responsiveVoice.speak(quoteString, "US English Female");
+	if(!responsiveVoice.isPlaying()) {
+	  var quoteString = quote + " " + author;
+	  responsiveVoice.speak(quoteString, "US English Female");
+	}
 }
