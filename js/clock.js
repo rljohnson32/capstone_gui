@@ -209,12 +209,15 @@ function toggleTimerForm() {
 	        minuterow.style.display = "block";
 	        secondrow.style.display = "block";
 			selectrow.style.display = "block";
+			inputrow.style.display = "block";
+
 	        //document.getElementById("newstock").focus();
 
 	    } else {
 	        minuterow.style.display = "none";
 	        secondrow.style.display = "none";
 			selectrow.style.display = "none";
+			inputrow.style.display = "none";
 	    }
 	}
 }

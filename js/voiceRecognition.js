@@ -1,16 +1,20 @@
 // get navigation links
 //var allLinks = document.getElementsByTagName('a');
 // get last word said element
-var strongEl = document.getElementById('latest-word');
 var weatherFlag = 0;
-
-// new instance of speech recognition
 var recognition = new webkitSpeechRecognition();
-// set params
 recognition.continuous = true;
-//recognition.interimResults = true;
-recognition.maxAlternatives = 1;
 recognition.start();
+
+setInterval(resetVoiceRecog, 10000);
+
+function resetVoiceRecog() {
+  recognition.stop();
+}
+
+recognition.onend = function(event) {
+  recognition.start();
+}
 
 recognition.onresult = function(event){
   
@@ -37,17 +41,42 @@ recognition.onresult = function(event){
     sayQuote();
     //quoteFlag = 1;
   }
+  else if(saidWord.indexOf('timer') !== -1){
+    //console.log('saidWord: ' + saidWord);
+    //console.log('regex returns: ' + saidWord.match(/\d+\D/g));
+    var regReturn = saidWord.match(/\d+\D/g);
+    var minuteIndex = saidWord.indexOf('minute');
+    var secondIndex = saidWord.indexOf('second');
+    var minutes = 0;
+    var seconds = 0;
+    if(minuteIndex !== -1 && secondIndex !== -1){
+      minutes = regReturn[0];
+      seconds = regReturn[1];
+    }
+    else if(minuteIndex !== -1){
+      minutes = regReturn[0]; 
+    }
+    else if (secondIndex !== -1){
+      seconds = regReturn[0];
+    }
+    if(saidWord.indexOf('clear') !== -1){
+      if(timerRunning){
+        clearTimer();
+      }
+    }
+
+    $("#minsfortimer").val(minutes);
+    $("#secsfortimer").val(seconds);
+    setTimer();
+
+  } 
+
   else if(saidWord.indexOf('time') !== -1){
     sayCurrentTime();
-    //timeFlag = 1;
   } 
 
-  else if(saidWord.indexOf('set') !== -1){
-    //if(saidWord.indexOf('it') !== -1){
-      setTimer();
-    //}
-  } 
 
+//need to add regex here to pick the symbol out, shouldnt be too bad
   else if(saidWord.indexOf('stock') !== -1){
     if(saidWord.indexOf('add') !== -1){
       console.log(saidWord + 'index of add is: ' + saidWord.indexOf('add'));
@@ -61,39 +90,13 @@ recognition.onresult = function(event){
     else{
      sayStocks(); 
     }
-    
-    //stockFlag = 1;
   }   
-  
-  //processFlags();
-
-  
-  // loop through links and match to word spoken
-  // for (i=0; i<allLinks.length; i++) {
-    
-  //   // get the word associated with the link
-  //   var dataWord = allLinks[i].dataset.word;
-    
-  //   // if word matches chenge the colour of the link
-  //   if (saidWord.indexOf(dataWord) != -1) {
-  //     allLinks[i].style.color = 'red';
-  //   }
-  // }
-  
-  // append the last word to the bottom sentence
-  //strongEl.innerHTML = saidWord;
-}
-
-function processFlags(){
-  if(weatherFlag){
-    weatherFlag = 0;
-    sayCurrentWeather();
-    //recognition.start();
-  }
 }
 
 // speech error handling
 recognition.onerror = function(event){
-  console.log('error?');
-  console.log(event);
+  console.log('no speech detected');
+  //startListening();
 }
+
+
