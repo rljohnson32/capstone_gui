@@ -48,27 +48,27 @@ div#timer {
 }
 
 div#stocks {
-    width: 25%;
+    /*width: 25%;*/
     height: 110px;
 
 
     /*background: red;*/
     float: left;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 
   #stocks h4{
    /* text-align: center;*/
-   margin-left: 40px;
+   margin-left: 20px;
   }
 
   #stockForm{
     margin-top: 10px;
-    margin-left: 40px;
+    /*margin-left: 40px;*/
   }
 
-  #stocklist {
+#stocklist {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
@@ -76,28 +76,163 @@ div#stocks {
 }
 
 #stocklist td, #stocklist th {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     padding: 8px;
 }
 
-#stocklist tr:nth-child(even){background-color: #f2f2f2;}
+/*#stocklist tr {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}*/
 
-#stocklist tr:hover {background-color: #ddd;}
+/*#stocklist tr:nth-child(even){background-color: #f2f2f2;}*/
+
+#stocklist tr:hover {
+  background-color: #ddd;
+}
+
+#stocklist tr:hover i{
+  display: inline;
+}
+
+#stocklist tr i{
+  display: none;
+  margin-left: 5px;
+}
 
 #stocklist th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     text-align: left;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #f2f2f2;
+    color: black;
     colspan="3";
 }
 
-#quote{
+#stockPlus{
+  color: green;
+  float: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#timerPlus{
+  color: green;
+  float: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#quoteShuffle{
+  float: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+#timerlist {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    /*width: 100%;*/
+}
+
+#timerlist th {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}
+
+#timerlist td{
+    border-bottom: none;
+    border-top: none;
+    padding: 2px;
+    padding-right: none;
+}
+
+/*#stocklist tr {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}*/
+
+/*#stocklist tr:nth-child(even){background-color: #f2f2f2;}*/
+
+/*#timerlist tr:hover {
+  background-color: #ddd;
+}*/
+
+
+#timerlist th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #f2f2f2;
+    color: black;
+    colspan="3";
+}
+
+#quotelist {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    margin-top: 40px;
+    margin-left: 20px;
+    width: 20%;
+    /*width: 100%;*/
+}
+
+/*#quotelist th {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}*/
+
+#quoteHeader {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #f2f2f2;
+    color: black;
+    colspan="3";
+}
+
+#quotelist td{
+    border-bottom: none;
+    border-top: none;
+    padding: 2px;
+    padding-right: none;
+}
+
+/*#quotelist tr {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}*/
+
+/*#quotelist tr:nth-child(even){background-color: #f2f2f2;}*/
+
+/*#quotelist tr:hover {
+  background-color: #ddd;
+}*/
+
+
+/*#quotelist th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #f2f2f2;
+    color: black;
+    colspan="3";
+}*/
+
+/*#quote{
   margin-top: 40px;
   margin-left: 20px;
   width: 30%;
-}
+}*/
 
 #newquote{
   margin-top: 5px;

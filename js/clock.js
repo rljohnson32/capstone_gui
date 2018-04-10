@@ -54,14 +54,15 @@ function updateClock(){
 	html += '<b>'+weekDay + ', ' + month + ' ' + day+'</b>';
 
 	if(now.getHours() < 12){
-		html += '<p>Good Morning!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
+		html += '<p>Good Morning!</br></p>';
 	}
 	else if(now.getHours() < 16){
-		html += '<p>Good Afternoon!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
+		html += '<p>Good Afternoon!</br></p>';
 	}
 	else{
-		html += '<p>Good Evening!<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br></p>';
+		html += '<p>Good Evening!</br></p>';
 	}
+	// html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say">';
 
 	//html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br>';
 
@@ -123,6 +124,9 @@ function getGreeting(){
 
 function timerDone(){
 		document.getElementById('alarm' + curAlarm).play();
+		var text = '<b><p id="timer1">Timer Done' + ' <input type="submit" onclick="clearTimer()" value="Clear"></p></b>'
+		$("#countdown").html(text);
+
 }
 
 function clearTimer(){
@@ -153,6 +157,9 @@ function setTimer(){
 		}
 
 		if(minutes != 0 || seconds != 0){
+			if(minuterow.style.display === "block"){
+				toggleTimerForm();
+			}
 			timerRunning = 1;
 			var now = new Date().getTime();
 			var end = now + (minutes*60+seconds+1)*1000;
@@ -191,6 +198,25 @@ function setTimer(){
 
 function updateSound(){
 	curAlarm = document.getElementById("soundPicker").value;
+}
+
+function toggleTimerForm() {
+	if(timerRunning == 0){
+	    var minuterow = document.getElementById("minuterow");
+	    var secondrow = document.getElementById("secondrow");
+	    var selectrow = document.getElementById("selectrow");
+	    if (minuterow.style.display === "none") {
+	        minuterow.style.display = "block";
+	        secondrow.style.display = "block";
+			selectrow.style.display = "block";
+	        //document.getElementById("newstock").focus();
+
+	    } else {
+	        minuterow.style.display = "none";
+	        secondrow.style.display = "none";
+			selectrow.style.display = "none";
+	    }
+	}
 }
 
 

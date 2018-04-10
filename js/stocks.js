@@ -48,8 +48,9 @@ function updateStocks(){
           var prevClose = lastData['4. close'];
           var cur = close - prevClose;
           var curPercent = (cur / prevClose)*100;
-          var curPercentRounded = Math.round(100*curPercent)/100;
-          $("#DJI").html(curPercentRounded + '%');
+          var curPercentRounded = (Math.round(100*curPercent)/100).toFixed(2);
+          var curPercentRoundedFinal = (curPercentRounded > 0) ? '+' + curPercentRounded  : curPercentRounded;
+          $("#DJI").html(curPercentRoundedFinal + '%');
           if(cur < 0){
             //$("#dow").style.color = "red";
             document.getElementById('DJI').style.color = "red";
@@ -82,8 +83,9 @@ function updateStocks(){
           var prevClose = lastData['4. close'];
           var cur = close - prevClose;
           var curPercent = (cur / prevClose)*100;
-          var curPercentRounded = Math.round(100*curPercent)/100;
-          $("#IXIC").html(curPercentRounded + '%');
+          var curPercentRounded = (Math.round(100*curPercent)/100).toFixed(2);
+          var curPercentRoundedFinal = (curPercentRounded > 0) ? '+' + curPercentRounded  : curPercentRounded;
+          $("#IXIC").html(curPercentRoundedFinal + '%');
           if(cur < 0){
             //$("#dow").style.color = "red";
             document.getElementById('IXIC').style.color = "red";
@@ -116,8 +118,9 @@ function updateStocks(){
           var prevClose = lastData['4. close'];
           var cur = close - prevClose;
           var curPercent = (cur / prevClose)*100;
-          var curPercentRounded = Math.round(100*curPercent)/100;
-          $("#GSPC").html(curPercentRounded + '%');
+          var curPercentRounded = (Math.round(100*curPercent)/100).toFixed(2);
+          var curPercentRoundedFinal = (curPercentRounded > 0) ? '+' + curPercentRounded  : curPercentRounded;
+          $("#GSPC").html(curPercentRoundedFinal + '%');
           if(cur < 0){
             //$("#dow").style.color = "red";
             document.getElementById('GSPC').style.color = "red";
@@ -135,37 +138,35 @@ function updateStocks(){
 }
 
 function sayStocks(){
-	if(!responsiveVoice.isPlaying()) {	
-	  var DOWval = $("#DJI")[0].innerHTML.replace('-', '');
-	  var NASDAQval = $("#IXIC")[0].innerHTML.replace('-', '');
-	  var SP500val = $("#GSPC")[0].innerHTML.replace('-', '');
-	  //var DOWpos = (parseFloat(DOWval.replace('%', '')) > 0) ? "up" : "down";
-	  var DOWpos = (document.getElementById('GSPC').style.color == "red") ? "down" : "up";
-	  //var NASDAQpos = (parseFloat(NASDAQval.replace('%', '').replace('-', '')) > 0) ? "up" : "down";
-	  var NASDAQpos = (document.getElementById('IXIC').style.color == "red") ? "down" : "up";
-	  //var SP500pos = (parseFloat(SP500val.replace('%', '').replace('-', '')) > 0) ? "up" : "down";
-	  var SP500pos = (document.getElementById('GSPC').style.color == "red") ? "down" : "up";
-	  var DOWstring = "The DOW is " + DOWpos + " " + DOWval;
-	  var NASDAQstring = "The NASDAQ is " + NASDAQpos + " " +  NASDAQval;
-	  var SP500string = "The S and P 500 is " + SP500pos + " " + SP500val;
-	  var stockStrings = [];
-	  stockStrings.push(DOWstring);
-	  stockStrings.push(NASDAQstring);
-	  stockStrings.push(SP500string);
+  var DOWval = $("#DJI")[0].innerHTML.replace('-', '');
+  var NASDAQval = $("#IXIC")[0].innerHTML.replace('-', '');
+  var SP500val = $("#GSPC")[0].innerHTML.replace('-', '');
+  //var DOWpos = (parseFloat(DOWval.replace('%', '')) > 0) ? "up" : "down";
+  var DOWpos = (document.getElementById('GSPC').style.color == "red") ? "down" : "up";
+  //var NASDAQpos = (parseFloat(NASDAQval.replace('%', '').replace('-', '')) > 0) ? "up" : "down";
+  var NASDAQpos = (document.getElementById('IXIC').style.color == "red") ? "down" : "up";
+  //var SP500pos = (parseFloat(SP500val.replace('%', '').replace('-', '')) > 0) ? "up" : "down";
+  var SP500pos = (document.getElementById('GSPC').style.color == "red") ? "down" : "up";
+  var DOWstring = "The DOW is " + DOWpos + " " + DOWval;
+  var NASDAQstring = "The NASDAQ is " + NASDAQpos + " " +  NASDAQval;
+  var SP500string = "The S and P 500 is " + SP500pos + " " + SP500val;
+  var stockStrings = [];
+  stockStrings.push(DOWstring);
+  stockStrings.push(NASDAQstring);
+  stockStrings.push(SP500string);
 
-	  for(var i = 0; i < addedSymbols.length; i++){
-	    var curSymb = addedSymbols[i];
-	    var curVal = $("#" + curSymb)[0].innerHTML.replace('-', '');
-	    var curPos = (document.getElementById(curSymb).style.color == "red") ? "down" : "up";
-	    var curS = curSymb + " is " + curPos + " " + curVal;
-	    stockStrings.push(curS);
-	  }
+  for(var i = 0; i < addedSymbols.length; i++){
+    var curSymb = addedSymbols[i];
+    var curVal = $("#" + curSymb)[0].innerHTML.replace('-', '');
+    var curPos = (document.getElementById(curSymb).style.color == "red") ? "down" : "up";
+    var curS = curSymb + " is " + curPos + " " + curVal;
+    stockStrings.push(curS);
+  }
 
-	  for(var i = 0; i < stockStrings.length; i++){
-	    var curString = stockStrings[i];
-	    responsiveVoice.speak(curString, "US English Female");
-	  }
-	}
+  for(var i = 0; i < stockStrings.length; i++){
+    var curString = stockStrings[i];
+    responsiveVoice.speak(curString, "US English Female");
+  }
 }
 
 function updateAdded(){
@@ -200,8 +201,9 @@ function updateAddedHTML(curURL, curSymbol){
         var prevClose = lastData['4. close'];
         var cur = close - prevClose;
         var curPercent = (cur / prevClose)*100;
-        var curPercentRounded = Math.round(100*curPercent)/100;
-        $("#"+curSymbol).html(curPercentRounded + '%');
+        var curPercentRounded = (Math.round(100*curPercent)/100).toFixed(2);
+        var curPercentRoundedFinal = (curPercentRounded > 0) ? '+' + curPercentRounded  : curPercentRounded;
+        $("#"+curSymbol).html(curPercentRoundedFinal + '%');
         if(cur < 0){
           //$("#dow").style.color = "red";
           document.getElementById(curSymbol).style.color = "red";
@@ -265,7 +267,7 @@ function addSymbol(){
         jsonnew = data;
         if(data.hasOwnProperty('Error Message')){
           $("#newstock").val('');
-          alert(symbol + ": INVALID SYMBOL");
+          //alert(symbol + ": INVALID SYMBOL");
           return;
         }
         else if(addedSymbols.includes(symbol)){
@@ -276,7 +278,7 @@ function addSymbol(){
         else{
           addedSymbols.push(symbol);
           //var html = '<li>' + symbol + ':&nbsp&nbsp&nbsp<span id="' + symbol + '"></span></li>';
-          var html = '<tr><td>' + symbol + '</td><td id="' + symbol + '"></td><td><button id="' + symbol + 'rm" class="btn"><i class="fa fa-close"></i></button></td></tr>'
+          var html = '<tr><td>' + symbol + '</td><td id="' + symbol + '"></td><td><div id="' + symbol + 'rm" style="font-size:15px;color:red"><i class="fa fa-minus-circle"></i></div></td></tr>'
           $('#stocklist').append(html);
           var button = document.getElementById(symbol+'rm');
           button.setAttribute('onclick', 'removeStock(this)');
@@ -290,6 +292,23 @@ function addSymbol(){
   });
   
 }
+
+function toggleStockForm() {
+    var x = document.getElementById("stockForm");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        document.getElementById("newstock").focus();
+    } else {
+        x.style.display = "none";
+    }
+}
+
+var stockEnter = document.getElementById("newstock");
+stockEnter.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addSymbol();
+    }
+});
 
 
 function removeStock(row){

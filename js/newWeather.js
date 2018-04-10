@@ -76,9 +76,9 @@ function updateWeather(){
           html += '<li>Feels Like: '+feelsLike+'</li>';
           html += '<li>Chance of Rain: '+rainChance+'%</li></ul>';
           html += '</div>';
-          html += '<input id="speak" type="submit" onclick="sayCurrentWeather()" value="Speak Weather"></br>';
+          // html += '<input id="speak" type="submit" onclick="sayCurrentWeather()" value="Speak Weather"></br>';
 
-          html += '<i>Last Updated: <span id="lastWeatherUpdate">'+ lastTimeWeatherUpdated +'</span></i></br></br>';
+          html += '<i style="font-size:15px;color:grey">Updated: <span id="lastWeatherUpdate">'+ lastTimeWeatherUpdated +'</span></i></br></br>';
           //html += '<img src=' + icon +'></br>';
 
           html += '<div id="weatherForm" style="display: none;">';

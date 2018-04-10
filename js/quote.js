@@ -427,10 +427,16 @@ function updateQuote(){
 	quote = quotesComb[quoteIndex].quote;
 	author = quotesComb[quoteIndex].author;
 
-	var html;
-	html = '<h4>Daily Quote</h4>'
-	html += '<p>\"' + quote + '\"</br> <i>-' + author + '</i></p>';
-	$("#quote").html(html);
+	//var html;
+	//html = '<h4>Daily Quote</h4>'
+	var quoteText = '\"' + quote + '\"';
+	var authorText = '<i>-' + author + '</i>';
+	//alert(quoteText);
+	//$("#quote").html(html);
+	$("#quoteText").html(quoteText);
+	$("#authorName").html(authorText);
+
+	
 }
 
 function sayQuote(){
