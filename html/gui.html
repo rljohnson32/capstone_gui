@@ -1,6 +1,6 @@
 <!-- 
 To Do:
-1.) Modify weather widget for better style, consistant with sidebar of mac
+1.) Make Table header consitant across all tables
 2.) Events styling (put in table and less characters / add symbols)
 3.) News update, make cleaner looking, smaller pics/consistant sizing
 asdf -->
@@ -32,47 +32,7 @@ asdf -->
       <div id="clock"></div>
       <!-- <div id="greeting"></div> -->
 
-
-    <div id="stocks">
-<!--         <h4>Stocks</h4>
-        <ul id="stocklist">
-            <li>DOW J:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="DJI"></span></li>
-            <li>NASDAQ:&nbsp&nbsp&nbsp<span id="IXIC"></span></li>
-            <li>S&P 500:&nbsp&nbsp&nbsp<span id="GSPC"></span></li>
-        </ul> -->
-
-        <table id="stocklist">
-          <tr>
-            <th colspan="3"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp&nbspStocks<span onclick="toggleStockForm()" id="stockPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
-          </tr>
-          <tr>
-            <td>DOW J</td>
-            <td id="DJI"></td>
-            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-          </tr>
-          <tr>
-            <td>NASDAQ</td>
-            <td id="IXIC"></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>S&P 500</td>
-            <td id="GSPC"></td>
-            <td></td>
-            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
-          </tr>
-        </table>
-        <!-- <input id="speak" type="submit" onclick="sayStocks()" value="Speak Stocks"></br> -->
-    <i style="font-size:15px;color:grey">Updated: <span id="lastStockUpdate"></span></i>
-    
-</br>
-    <div id="stockForm" style="display:none">
-        <input type="text" size="6" maxlength="5" id="newstock" placeholder="Symbol">
-        <input id='addstockbutton' type="submit" onclick="addSymbol()" value="Add">
-    </div>
-
-    </div>
-    <div id="timer">
+      <div id="timer">
         <!-- <h4>Timer</h4>
         <select id="soundPicker" oninput="updateSound()">
                       <option value="1"> Default<br>
@@ -127,6 +87,157 @@ asdf -->
         <audio id="alarm6" src="../resources/Rooster-SoundBible.com-1114473528.wav" preload="auto"></audio>
     </div>
 
+
+    <div id="stocks">
+<!--         <h4>Stocks</h4>
+        <ul id="stocklist">
+            <li>DOW J:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="DJI"></span></li>
+            <li>NASDAQ:&nbsp&nbsp&nbsp<span id="IXIC"></span></li>
+            <li>S&P 500:&nbsp&nbsp&nbsp<span id="GSPC"></span></li>
+        </ul> -->
+
+        <table id="stocklist">
+          <tr>
+            <th colspan="3"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp&nbspStocks<span onclick="toggleStockForm()" id="stockPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
+          </tr>
+          <tr>
+            <td>DOW J</td>
+            <td id="DJI"></td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+          </tr>
+          <tr>
+            <td>NASDAQ</td>
+            <td id="IXIC"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>S&P 500</td>
+            <td id="GSPC"></td>
+            <td></td>
+            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
+          </tr>
+        </table>
+        <!-- <input id="speak" type="submit" onclick="sayStocks()" value="Speak Stocks"></br> -->
+    <i style="font-size:15px;color:grey">Updated: <span id="lastStockUpdate"></span></i>
+    
+</br>
+    <div id="stockForm" style="display:none">
+        <input type="text" size="6" maxlength="5" id="newstock" placeholder="Symbol">
+        <input id='addstockbutton' type="submit" onclick="addSymbol()" value="Add">
+    </div>
+
+    </div>
+    
+    <div id="weatherTable">
+              <table id="weatherlist">
+          <tr>
+            <th colspan="6" id="weatherHeader">
+              <span onclick="toggleWeatherForm()" class="fa fa-sun-o" aria-hidden="true"></span>
+              &nbsp&nbspWeather
+              <span onclick="updateWeather()" id="weatherRefresh" class="fa fa-refresh" aria-hidden="true">
+              </span>
+              <span id="lastWeatherUpdate" style="color:grey; float:right"></span>
+
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <div id="weatherForm" style="display: none">
+                Zip Code:  </br><input id="zip" size="6" maxlength="5">
+                <input type="submit" onclick="getZip()" value="Update"></br>
+                City:  </br><input type="text" id="city" size="14"></br>
+                State:  </br><input type="text" id="state" size="14">
+                <input type="submit" onclick="getCity()" value="Update"></br>
+                <button onclick="getLocation()" >Current Location</button>
+              </div>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td style="padding-top: 0px; padding-bottom: 0px" align="right"><span style="color:grey; font-size: 75%;">Updated:</span></td>
+            <td style="padding-top: 0px; padding-bottom: 0px" align="left"><span id="lastWeatherUpdate" style="color:grey; font-size: 75%;">2:34 PM</span></td>
+          </tr> -->
+          <tr>
+            <td id="weatherLocation" colspan="2" style="font-size: 125%"></td>
+            <td></td>
+            <td></td>
+            <td id="curWeatherSymbol"></td>
+            <td id="curTempF" style="font-size: 175%"></td>
+          </tr>
+          <tr id="timeRow">
+            <td id="now">Now</td>
+            <td id="1hr"></td>
+            <td id="2hr"></td>
+            <td id="3hr"></td>
+            <td id="4hr"></td>
+            <td id="5hr"></td>
+          </tr>
+          <tr id="rainChanceRow" style="color:blue">
+            <td id="nowR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="1hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="2hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="3hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="4hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="5hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+          </tr>
+          <tr id="symbolRow">
+            <td id="nowS"></td>
+            <td id="1hrS"></td>
+            <td id="2hrS"></td>
+            <td id="3hrS"></td>
+            <td id="4hrS"></td>
+            <td id="5hrS"></td>
+          </tr>
+          <tr id="tempRow">
+            <td id="nowT" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="1hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="2hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="3hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="4hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="5hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
+          </tr>
+          <tr id="forcastDay1">
+            <td id="day1"></td>
+            <td></td>
+            <td id="day1S" colspan="2">
+              <span id="day1R" style="color:blue"></span>
+            </td>
+            <td id="day1HL" colspan="2" style="text-align: right;"><span id="day1H"></span><span id="day1L" style="color:grey">&nbsp&nbsp</span></td>
+          </tr>
+          <tr id="forcastDay2">
+            <td id="day2"></td>
+            <td></td>
+            <td id="day2S" colspan="2">
+              <span id="day2R" style="color:blue"></span>
+            </td>
+            <td id="day2HL" colspan="2" style="text-align: right;"><span id="day2H"></span><span id="day2L" style="color:grey">&nbsp&nbsp</span></td>
+          </tr>
+          <tr id="forcastDay3">
+            <td id="day3"></td>
+            <td></td>
+            <td id="day3S" colspan="2">
+              <span id="day3R" style="color:blue"></span>
+            </td>
+            <td id="day3HL" colspan="2" style="text-align: right;"><span id="day3H"></span><span id="day3L" style="color:grey">&nbsp&nbsp</span></td>
+          </tr>
+          <tr id="forcastDay4">
+            <td id="day4"></td>
+            <td></td>
+            <td id="day4S" colspan="2">
+              <span id="day4R" style="color:blue"></span>
+            </td>
+            <td id="day4HL" colspan="2" style="text-align: right;"><span id="day4H"></span><span id="day4L" style="color:grey">&nbsp&nbsp</span></td>
+          </tr>
+          <tr id="forcastDay5">
+            <td id="day5"></td>
+            <td></td>
+            <td id="day5S" colspan="2">
+              <span id="day5R" style="color:blue"></span>
+            </td>
+            <td id="day5HL" colspan="2" style="text-align: right;"><span id="day5H"></span><span id="day5L" style="color:grey">&nbsp&nbsp</span></td>
+          </tr>
+        </table>
+    </div>
+
     </header>
     <div id="quote">
         <table id="quotelist">
@@ -175,7 +286,7 @@ asdf -->
     </script>
     
     <!-- <h2 id="weatherTitle">Weather</h2> -->
-    <div id="weather"></div>
+    <!-- <div id="weather"></div> -->
     <div id="news"></div>
     <!-- <div id="sports"></div> -->
   </body>

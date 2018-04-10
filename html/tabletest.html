@@ -12,17 +12,101 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-        <table id="quotelist">
+        <table id="weatherlist">
           <tr>
-            <td id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
+            <th colspan="6" id="weatherHeader">
+              <span class="fa fa-sun-o" aria-hidden="true"></span>
+              &nbsp&nbspWeather
+              <span onclick="updateWeather()" id="weatherRefresh" class="fa fa-refresh" aria-hidden="true">
+              </span>
+              <span id="lastWeatherUpdate" style="color:grey; float:right">2:34 PM</span>
+
+            </th>
+          </tr>
+          <!-- <tr>
+            <td style="padding-top: 0px; padding-bottom: 0px" align="right"><span style="color:grey; font-size: 75%;">Updated:</span></td>
+            <td style="padding-top: 0px; padding-bottom: 0px" align="left"><span id="lastWeatherUpdate" style="color:grey; font-size: 75%;">2:34 PM</span></td>
+          </tr> -->
+          <tr>
+            <td id="weatherLocation" colspan="2" style="font-size: 125%"></td>
+            <td></td>
+            <td></td>
+            <td id="curWeatherSymbol"></td>
+            <td id="curTempF" style="font-size: 175%"></td>
+          </tr>
+          <tr id="timeRow">
+            <td id="now">Now</td>
+            <td id="1hr"></td>
+            <td id="2hr"></td>
+            <td id="3hr"></td>
+            <td id="4hr"></td>
+            <td id="5hr"></td>
+          </tr>
+          <tr id="rainChanceRow" style="color:blue">
+            <td id="nowR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="1hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="2hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="3hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="4hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
+            <td id="5hrR" style="padding-top: 0px; padding-bottom: 0px">1%</td>
+          </tr>
+          <tr id="symbolRow">
+            <td id="nowS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+            <td id="1hrS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+            <td id="2hrS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+            <td id="3hrS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+            <td id="4hrS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+            <td id="5hrS"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif"></td>
+          </tr>
+          <tr id="tempRow">
+            <td id="nowT" style="padding-top: 0px; padding-bottom: 0px">40</td>
+            <td id="1hrT" style="padding-top: 0px; padding-bottom: 0px">41</td>
+            <td id="2hrT" style="padding-top: 0px; padding-bottom: 0px">42</td>
+            <td id="3hrT" style="padding-top: 0px; padding-bottom: 0px">43</td>
+            <td id="4hrT" style="padding-top: 0px; padding-bottom: 0px">44</td>
+            <td id="5hrT" style="padding-top: 0px; padding-bottom: 0px">45</td>
+          </tr>
+          <tr id="forcastDay1">
+            <td id="day1">Monday</td>
+            <td></td>
+            <td id="day1S" colspan="2"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif">
+              <span id="day1R" style="color:blue">10%</span>
             </td>
+            <td id="day1HL" colspan="2" style="text-align: right;"><span id="day1H">43</span><span id="day1L" style="color:grey">&nbsp&nbsp12</span></td>
           </tr>
-          <tr>
-            <td id="quoteText"></td>
+          <tr id="forcastDay2">
+            <td id="day2">Monday</td>
+            <td></td>
+            <td id="day2S" colspan="2"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif">
+              <span id="day2R" style="color:blue">10%</span>
+            </td>
+            <td id="day2HL" colspan="2" style="text-align: right;"><span id="day2H">43</span><span id="day2L" style="color:grey">&nbsp&nbsp12</span></td>
           </tr>
-          <tr>
-            <td id="authorName"></td>
-            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
+          <tr id="forcastDay3">
+            <td id="day3">Monday</td>
+            <td></td>
+            <td id="day3S" colspan="2"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif">
+              <span id="day3R" style="color:blue">10%</span>
+            </td>
+            <td id="day3HL" colspan="2" style="text-align: right;"><span id="day3H">43</span><span id="day3L" style="color:grey">&nbsp&nbsp12</span></td>
+          </tr>
+          <tr id="forcastDay4">
+            <td id="day4">Monday</td>
+            <td></td>
+            <td id="day4S" colspan="2"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif">
+              <span id="day4R" style="color:blue">10%</span>
+            </td>
+            <td id="day4HL" colspan="2" style="text-align: right;"><span id="day4H">43</span><span id="day4L" style="color:grey">&nbsp&nbsp12</span></td>
+          </tr>
+          <tr id="forcastDay5">
+            <td id="day5">Monday</td>
+            <td></td>
+            <td id="day5S" colspan="2"><img src="http://icons.wxug.com/i/c/k/partlycloudy.gif">
+              <span id="day5R" style="color:blue">10%</span>
+            </td>
+            <td id="day5HL" colspan="2" style="text-align: right;"><span id="day5H">43</span><span id="day5L" style="color:grey">&nbsp&nbsp12</span></td>
           </tr>
         </table>
+
+        <img src="../resources/appleWeather.png" style="float:right; position:absolute; top:0; right:0;">
       </body>
