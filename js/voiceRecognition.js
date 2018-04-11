@@ -73,25 +73,19 @@ recognition.onresult = function(event){
       getCity();
     }
 
-
     setTimeout(function(){
       sayCurrentWeather();
     }, 500);
-    
 
-    //weatherFlag = 1;  
-      
   }
   else if(saidWord.indexOf('quote') !== -1){
     if(saidWord.indexOf('new') !== -1){
       updateQuote();
     }
     sayQuote();
-    //quoteFlag = 1;
+
   }
   else if(saidWord.indexOf('timer') !== -1){
-    //console.log('saidWord: ' + saidWord);
-    //console.log('regex returns: ' + saidWord.match(/\d+\D/g));
     var regReturn = saidWord.match(/\d+\D/g);
     var minuteIndex = saidWord.indexOf('minute');
     var secondIndex = saidWord.indexOf('second');
