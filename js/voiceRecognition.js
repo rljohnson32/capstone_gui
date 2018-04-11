@@ -3,8 +3,7 @@ TODO:
 1.) Add voice commands to read off events,
 ex; You have __ events today, then read them.
 
-2.) Better voice control for stocks: use regex to pull the symbol out of the captured audio
-Use the json data of companies/symbols to enable abbilty to add a symbol by saying the company
+2.)Use the json data of companies/symbols to enable abbilty to add a symbol by saying the company
 ex; How is Microsofts stock doing. or Microsoft stock or Microsoft stock update.
 
 Might need to search all words in captured string against all the company names (could be very slow)
@@ -13,7 +12,7 @@ Add ability to remove sotkcs from list
 3.) Voice control / synthesis for news. Ability to read top stories from all categories.
 ex; Sports news update, technology news update, top news stories
 
-4.) Time: add ability to say the full date (day of week / month / day and stuff )
+4.) Time:add ability to say the full date (day of week / month / day and stuff )
 
 5.) better weather voice control: 
 will it rain today/chance of rain today, 
@@ -57,8 +56,31 @@ recognition.onresult = function(event){
     if(saidWord.indexOf('local') !== -1){
       getLocation();
     }
+    
+    var regReturnZip = saidWord.match(/\d{5}/g);
+    if(regReturnZip){
+      $("#zip").val(regReturnZip);
+      getZip();
+    }
+
+    var regReturnLocation = saidWord.match(/in \w+ \w+/g);
+    if(regReturnLocation){
+      console.log(regReturnLocation);
+      var splitArray = regReturnLocation[0].split(' ');
+      console.log(splitArray);
+      $("#city").val(splitArray[1]);
+      $("#state").val(splitArray[2]);
+      getCity();
+    }
+
+
+    setTimeout(function(){
+      sayCurrentWeather();
+    }, 500);
+    
+
     //weatherFlag = 1;  
-    sayCurrentWeather();  
+      
   }
   else if(saidWord.indexOf('quote') !== -1){
     if(saidWord.indexOf('new') !== -1){
@@ -99,20 +121,38 @@ recognition.onresult = function(event){
 
   else if(saidWord.indexOf('time') !== -1){
     sayCurrentTime();
-  } 
+  }
+
+  else if(saidWord.indexOf('date') !== -1){
+    sayCurrentDate();
+  }
+
+  else if(saidWord.indexOf('rain') !== -1){
+    sayRainChance();
+  }
 
 
 //need to add regex here to pick the symbol out, shouldnt be too bad
   else if(saidWord.indexOf('stock') !== -1){
-    if(saidWord.indexOf('add') !== -1){
-      console.log(saidWord + 'index of add is: ' + saidWord.indexOf('add'));
-      console.log( "this should be GE: " + saidWord[4] );
-      alert("stock and add detected");
-      var symbol = saidWord[4] + saidWord[5];
-      alert(symbol);
-      $("#newstock").val(symbol);// = symbol;
+    // if(saidWord.indexOf('add') !== -1){
+    //   console.log(saidWord + 'index of add is: ' + saidWord.indexOf('add'));
+    //   console.log( "this should be GE: " + saidWord[4] );
+    //   alert("stock and add detected");
+    //   var symbol = saidWord[4] + saidWord[5];
+    //   alert(symbol);
+    //   $("#newstock").val(symbol);// = symbol;
+    //   addSymbol();
+    // }
+    var regReturnStock = saidWord.match(/symbol\b \S{1,4}$/g);
+    if(regReturnStock){
+      //console.log(regReturnStock);
+      var splitArrayS = regReturnStock[0].split(' ');
+      //console.log(splitArrayS);
+      $("#newstock").val(splitArrayS[1]);
       addSymbol();
     }
+    
+
     else{
      sayStocks(); 
     }
@@ -121,7 +161,7 @@ recognition.onresult = function(event){
 
 // speech error handling
 recognition.onerror = function(event){
-  console.log('no speech detected');
+  //console.log('no speech detected');
   //startListening();
 }
 

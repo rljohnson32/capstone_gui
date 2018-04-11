@@ -24,6 +24,7 @@ weekdays[6] = "Saturday";
 var timerRunning = 0;
 var timerSounds = ["1", "2", "3", "4", "5", "6"];
 var curAlarm = "1";
+var dateString;
 
 $(document).ready(function() {  
   updateClock(); //Set initial time on page load
@@ -45,13 +46,27 @@ function updateClock(){
 	//if (hour   < 10) { hour   = "0" + hour;   }
 	if (minute < 10) { minute = "0" + minute; }
 	if (second < 10) { second = "0" + second; }
-	var timeString = hour + ':' + minute + ':' + second + " " + ap;
+	var timeString = hour + ':' + minute/* + ':' + second*/ + " " + ap;
 
 	html += timeString + '</h2>'
 	var weekDay = weekdays[now.getDay()];
 	var month = months[now.getMonth()];
 	var day = now.getDate();
 	html += '<b>'+weekDay + ', ' + month + ' ' + day+'</b>';
+	dateString = weekDay + ', ' + month + ' ' + day;
+	
+	if(day == 1){
+		dateString += 'st';
+	}
+	else if(day == 2){
+		dateString += 'nd';
+	}
+	else if(day == 3){
+		dateString += 'rd';
+	}
+	else{
+		dateString += 'th';
+	}
 
 	if(now.getHours() < 12){
 		html += '<p>Good Morning!</br></p>';
@@ -82,6 +97,11 @@ function sayCurrentTime(){
 		var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting() + " Rob!";
 		responsiveVoice.speak(curTimeString, "US English Female");
 	}
+}
+
+function sayCurrentDate(){
+	responsiveVoice.speak('Today is ' + dateString, "US English Female");	
+
 }
 
 function getGreeting(){
@@ -191,7 +211,7 @@ function setTimer(){
 	else{
 		$("#minsfortimer").val('');
 		$("#secsfortimer").val('');
-		alert("A timer is already running");
+		// alert("A timer is already running");
 	}
 
 }

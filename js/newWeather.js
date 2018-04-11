@@ -66,50 +66,58 @@ function updateWeather(){
           var forecast = data.forecast.simpleforecast.forecastday;
           var hourlyforecast = data.hourly_forecast;
           var rainChance = forecast[0].pop + '%';
-          rainPercent = rainChance + " percent";
+          rainPercent = rainChance;
 
           $("#weatherLocation").html(location);
           $("#curWeatherSymbol").html('<img src="' + icon + '">');
           $("#curTempF").html(temp_f);
 
+          $("#now").html('Now');
           $("#nowR").html(rainChance);
           $("#nowS").html('<img src="' + icon + '">');
           $("#nowT").html(curTemp);
 
           var hour;
+          var ap;
           var pop;
           var symbol;
           var hourlytemp;
 
-          // for(i = 1; i < 6; i++){
-          //   hour = 
-          //   pop = 
-          //   symbol = 
-          //   hourlytemp = 
-          //   $("#" + i + 'hr').html(hour);
-          //   $("#" + i + 'hrR').html(pop);
-          //   $("#" + i + 'hrS').html('<img src="' + symbol + '">');
-          //   $("#" + i + 'hrT').html(hourlytemp);
-          // }
+          for(i = 0; i < 5; i++){
+            hour = hourlyforecast[i].FCTTIME.hour;
+            ap = "AM";
+            if (hour   > 11) { ap = "PM";             }
+            if (hour   > 12) { hour = hour - 12;      }
+            if (hour   == 0) { hour = 12;             }
+            
+            hour = hour + ap;
+            pop = hourlyforecast[i].pop + '%';
+            symbol = hourlyforecast[i].icon_url;
+            hourlytemp = hourlyforecast[i].temp.english;
+            $("#" + (i+1) + 'hr').html(hour);
+            $("#" + (i+1) + 'hrR').html(pop);
+            $("#" + (i+1) + 'hrS').html('<img src="' + symbol + '">');
+            $("#" + (i+1) + 'hrT').html(hourlytemp);
+          }
 
           var day;
           var daySymbol;
           var daypop;
           var dayHigh;
-          var dayLow = '  '; //need to put 2 spaces on the front of this string, see line 200 in gui.html
+          var dayLow; //need to put 2 spaces on the front of this string, see line 200 in gui.html
 
-          // for(i = 1; i < 6; i++){
-          //   day = 
-          //   daySymbol = 
-          //   daypop = 
-          //   dayHigh = 
-          //   dayLow =
-          //   $("#day" + i).html(day);
-          //   $("#day" + i + 'S').html('<img src="' + daySymbol + '">');
-          //   $("#day" + i + 'R').html(daypop);
-          //   $("#day" + i + 'H').html(dayHigh);
-          //   $("#day" + i + 'L').html(dayLow);
-          // }
+          for(i = 0; i < 5; i++){
+            day = forecast[i].date.weekday;
+            daySymbol = forecast[i].icon_url;
+            daypop = forecast[i].pop + '%';
+            dayHigh = forecast[i].high.fahrenheit;
+            dayLow = '&nbsp&nbsp&nbsp' + forecast[i].low.fahrenheit + '&nbsp&nbsp&nbsp';
+            $("#day" + (i+1)).html(day);
+            $("#day" + (i+1) + 'S').html('<img src="' + daySymbol + '">');
+            $("#day" + (i+1) + 'R').html(daypop);
+            $("#day" + (i+1) + 'H').html(dayHigh);
+            $("#day" + (i+1) + 'L').html(dayLow);
+          }
 
           // //alert("Current temperature in " + location + " is: " + temp_f);
           // html = '<h2>'+location+'</h2>';
@@ -151,15 +159,15 @@ function updateWeather(){
        // $("#weather").html(html);
        })
        .catch(function(err) {
-        console.log('ERROR FETCHING WEATHER DATA:', err);
-        html = '<p>Error Fetching Weather Data</p>';
-        html += 'Zip Code:  </br><input id="zip" size="6" maxlength="5">'
-        html += '<input type="submit" onclick="getZip()" value="Update"></br>'
-        html += 'City:  </br><input type="text" id="city" size="14"></br>'
-        html += 'State:  </br><input type="text" id="state" size="14">'
-        html += '<input type="submit" onclick="getCity()" value="Update"></br>'
-        html += '<button onclick="getLocation()" >Current Location</button>'
-        $("#weather").html(html);
+        // console.log('ERROR FETCHING WEATHER DATA:', err);
+        // html = '<p>Error Fetching Weather Data</p>';
+        // html += 'Zip Code:  </br><input id="zip" size="6" maxlength="5">'
+        // html += '<input type="submit" onclick="getZip()" value="Update"></br>'
+        // html += 'City:  </br><input type="text" id="city" size="14"></br>'
+        // html += 'State:  </br><input type="text" id="state" size="14">'
+        // html += '<input type="submit" onclick="getCity()" value="Update"></br>'
+        // html += '<button onclick="getLocation()" >Current Location</button>'
+        // $("#weather").html(html);
     });
   updateLastUpdate();
 }
@@ -176,11 +184,17 @@ function toggleWeatherForm(){
 
 function sayCurrentWeather(){
   //console.log("IN CURRENT WEATHER FUNCTION");
+  //updateWeather();
   if(!responsiveVoice.isPlaying()) {
-    var curWeatherString = "It is currently " + curTemp + " degrees and " + curCond + " in " + curCity + ". There is a " + rainPercent + " chance of rain today";
+    var curWeatherString = "It is currently " + curTemp + " degrees and " + curCond + " in " + curCity + ".";//" There is a " + rainPercent + " chance of rain today";
     responsiveVoice.speak(curWeatherString, "US English Female");
   }
 
+}
+
+function sayRainChance(){
+  var rainString = "There is a " + rainPercent + " chance of rain today in " + curCity + ".";
+  responsiveVoice.speak(rainString, "US English Female");
 }
 
 function updateLastUpdate(){

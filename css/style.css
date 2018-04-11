@@ -1,26 +1,16 @@
-
-/* 
-  Look inspired by http://www.degreees.com/ 
-  Used for demo purposes.
-
-  Weather icon font from http://fonts.artill.de/collection/artill-weather-icons
-
-  DO NOT hotlink the assets/font included in this demo. If you wish to use the same font icon then download it to your local assets at the link above. If you use the links below odds are at some point they will be removed and your version will break.
-*/
-
 header {
     width: 100%;
-    height: 100px;
+    height: 20%;
     /*background: aqua;*/
     margin-left: 10px;
     padding: 10px;
 }
 div#clock {
     /*width: 20%;*/
-    height: 70px;
     /*background: red;*/
     float: left;
     /*margin-right: 20px;*/
+    margin-bottom: 20px;
 }
 #greeting {
     /*margin-left: 15%;*/
@@ -32,12 +22,25 @@ div#clock {
     width: 30%;
 }
 
+#calandar{
+  float:left;
+}
+
+#calandarRefresh{
+  float: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+  padding-left: 10px;
+}
+
 div#timer {
     /*width: 25%;*/
-    height: 70px;
+    /*height: 70px;*/
     /*background: red;*/
     float: left;
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 #timer h4 {
@@ -50,12 +53,13 @@ div#timer {
 
 div#stocks {
     /*width: 25%;*/
-    height: 110px;
+    /*height: 110px;*/
 
 
     /*background: red;*/
     float: left;
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -76,7 +80,7 @@ div#stocks {
     /*width: 100%;*/
 }
 
-#stocklist td, #stocklist th {
+#stocklist td{
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 8px;
@@ -103,7 +107,7 @@ div#stocks {
   margin-left: 5px;
 }
 
-#stocklist th {
+/*#stocklist th {
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: left;
@@ -111,6 +115,11 @@ div#stocks {
     color: black;
     colspan="3";
 }
+
+#stocklist th {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}*/
 
 #stockPlus{
   color: green;
@@ -126,7 +135,7 @@ div#stocks {
     /*width: 100%;*/
 }
 
-#stocklist td, #stocklist th {
+#stocklist td{
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 8px;
@@ -156,12 +165,16 @@ div#stocks {
 
 }
 
+/*.day {
+  text-align: left;
+}*/
+
 #weatherlist tr i{
   display: none;
   margin-left: 5px;
 }
 
-#weatherlist th {
+/*#weatherlist th {
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: left;
@@ -170,6 +183,12 @@ div#stocks {
     colspan="3";
 }
 
+#weatherlist th {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+   /* padding: 8px;*/
+}*/
+
 #weatherlist {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -177,12 +196,19 @@ div#stocks {
     /*width: 100%;*/
 }
 
-#weatherlist td{
+.todayWeather{
     /*border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;*/
     /*border: 1px solid #ddd;*/
     padding: 8px;
     text-align: center;
+}
+
+.todayWeather td{
+    /*border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;*/
+    /*border: 1px solid #ddd;*/
+    width: 70px;
 }
 
 #tempRow {
@@ -207,6 +233,14 @@ div#stocks {
   padding-bottom: 2px;
 }
 
+#minuterow{
+  margin-top: 5px;
+}
+
+#minsfortimer{
+  margin-left: 2px;
+}
+
 #quoteShuffle{
   float: right;
   padding-top: 2px;
@@ -221,10 +255,9 @@ div#stocks {
     /*width: 100%;*/
 }
 
-#timerlist th {
+/*#timerlist th {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
-    padding: 8px;
 }
 
 #timerlist td{
@@ -232,7 +265,7 @@ div#stocks {
     border-top: none;
     padding: 2px;
     padding-right: none;
-}
+}*/
 
 /*#stocklist tr {
     border-bottom: 1px solid black;
@@ -247,44 +280,48 @@ div#stocks {
 }*/
 
 
-#timerlist th {
+/*#timerlist th {
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: left;
     background-color: #f2f2f2;
     color: black;
     colspan="3";
-}
+}*/
 
-#quote{
-  /*float:left;*/
-
+div#quote {
+    /*width: 25%;*/
+    /*background: red;*/
+    float: left;
+    margin-left: 20px;
+    width: 15%;
 }
 
 #quotelist {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
-    margin-top: 40px;
-    margin-left: 20px;
-    width: 20%;
-    /*width: 100%;*/
+/*    margin-top: 40px;*/
+    /*margin-left: 20px;*/
+}
+
+th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    background-color: #f2f2f2;
+    color: black;
+    colspan="3";
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
 }
 
 /*#quotelist th {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
-    padding: 8px;
 }*/
-
-#quoteHeader {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    text-align: left;
-    background-color: #f2f2f2;
-    color: black;
-    colspan="3";
-}
 
 #quotelist td{
     border-bottom: none;
@@ -327,14 +364,14 @@ div#stocks {
   margin-bottom: 20px;
 }
  
- #weather{
+/* #weather{
    position:absolute;
    top:0;
    right:0;
    float: right;
    margin-right: 20px;
    margin-top: 10px;
-   /*border:1px solid black;*/
+   border:1px solid black;
   max-width: 100%;
   overflow-x: hidden;
   }
@@ -355,7 +392,7 @@ div#stocks {
 
   #currentWeatherList{
     margin-bottom: 5px;
-  }
+  }*/
 
 
   body{
@@ -398,15 +435,56 @@ div#stocks {
     text-align: center;
   }
 
-  .google{
+/*  .google{
     margin-left: 20px;
-    /*border:1px solid black;*/
+    border:1px solid black;
     width: 30%;
-  }
+  }*/
 
-  #lug{
+  div#calandar {
+    /*width: 25%;*/
+    /*background: red;*/
+    float: left;
     margin-left: 20px;
-  }
+}
+
+  #eventlist {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    /*width: 100%;*/
+}
+
+#eventlist td{
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}
+
+/*#stocklist tr {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}*/
+
+/*#stocklist tr:nth-child(even){background-color: #f2f2f2;}*/
+
+#eventlist tr:hover {
+  background-color: #ddd;
+}
+
+/*#eventlist tr:hover i{
+  display: inline;
+}
+
+#eventlist tr i{
+  display: none;
+  margin-left: 5px;
+}*/
+
+/*  #lug{
+    margin-left: 20px;
+  }*/
 
   .btn {
     background-color: DodgerBlue;

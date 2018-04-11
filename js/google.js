@@ -87,8 +87,10 @@
        */
       function appendPre(message, time) {
         //var pre = document.getElementById('events');
-        var html = '<li><b>' + message + '</b> ' + time + '</li>';
-        $('#events').append(html);
+        //var html = '<li><b>' + message + '</b> ' + time + '</li>';
+        var html = '<tr><td><b>' + message+ '</b></td><td>' + time + '</td></tr>';
+
+        $('#eventlist').append(html);
 
         //var textContent = document.createTextNode(message + '\n');
         //pre.appendChild(textContent);
@@ -116,7 +118,7 @@
           var minuteu = d.getMinutes();
           var apu = "AM";
           if (houru   > 11) { apu = "PM";             }
-          if (houru   > 12) { houru = houru - 12;      }
+          if (houru   > 12) { houru = houru - 12;     }
           if (houru   == 0) { houru = 12;             }
           if (minuteu < 10) { minuteu= "0" + minuteu; }
           $('#lastEventUpdate').html(houru + ':' + minuteu + ' ' + apu);

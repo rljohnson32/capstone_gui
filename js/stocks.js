@@ -271,7 +271,7 @@ function addSymbol(){
           return;
         }
         else if(addedSymbols.includes(symbol)){
-          alert("Already added: " + symbol);
+          // alert("Already added: " + symbol);
           $("#newstock").val('');
           return;
         }
@@ -321,8 +321,10 @@ function removeStock(row){
   var index2 = addedPairs.indexOf({"URL":url, "SYMBOL":symboltoremove});
   if (index1 > -1) {
     addedSymbols.splice(index1, 1);
+    console.log('slicin from symbols');
   }
   if (index2 > -1) {
+  	console.log('slicin from pairs');
     addedPairs.splice(index2, 1);
   }
   //console.log(row.id);

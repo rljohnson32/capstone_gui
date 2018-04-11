@@ -47,7 +47,7 @@ asdf -->
         <input type="submit" onclick="setTimer()" value="Set"></br> -->
         <table id="timerlist">
           <tr>
-            <th colspan="2"><span class="fa fa-clock-o" aria-hidden="true"></span>&nbsp&nbspTimer&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <th id="timerheader" colspan="2"><span class="fa fa-clock-o" aria-hidden="true"></span>&nbsp&nbspTimer&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <span id="timerPlus" onclick="toggleTimerForm()" class="fa fa-plus-circle" aria-hidden="true"></span>
             </th>
           </tr>
@@ -129,7 +129,7 @@ asdf -->
     </div>
     
     <div id="weatherTable">
-              <table id="weatherlist">
+      <table id="weatherlist">
           <tr>
             <th colspan="6" id="weatherHeader">
               <span onclick="toggleWeatherForm()" class="fa fa-sun-o" aria-hidden="true"></span>
@@ -140,9 +140,9 @@ asdf -->
 
             </th>
           </tr>
-          <tr>
+          <tr id="weatherForm" style="display: none">
             <td>
-              <div id="weatherForm" style="display: none">
+              <div>
                 Zip Code:  </br><input id="zip" size="6" maxlength="5">
                 <input type="submit" onclick="getZip()" value="Update"></br>
                 City:  </br><input type="text" id="city" size="14"></br>
@@ -157,21 +157,21 @@ asdf -->
             <td style="padding-top: 0px; padding-bottom: 0px" align="left"><span id="lastWeatherUpdate" style="color:grey; font-size: 75%;">2:34 PM</span></td>
           </tr> -->
           <tr>
-            <td id="weatherLocation" colspan="2" style="font-size: 125%"></td>
-            <td></td>
+            <td id="weatherLocation" colspan="3" style="font-size: 175%"></td>
+            <!-- <td></td> -->
             <td></td>
             <td id="curWeatherSymbol"></td>
             <td id="curTempF" style="font-size: 175%"></td>
           </tr>
-          <tr id="timeRow">
-            <td id="now">Now</td>
+          <tr class="todayWeather" id="timeRow">
+            <td id="now"></td>
             <td id="1hr"></td>
             <td id="2hr"></td>
             <td id="3hr"></td>
             <td id="4hr"></td>
             <td id="5hr"></td>
           </tr>
-          <tr id="rainChanceRow" style="color:blue">
+          <tr class="todayWeather" id="rainChanceRow" style="color:blue">
             <td id="nowR" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="1hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="2hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
@@ -179,7 +179,7 @@ asdf -->
             <td id="4hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="5hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
           </tr>
-          <tr id="symbolRow">
+          <tr class="todayWeather" id="symbolRow">
             <td id="nowS"></td>
             <td id="1hrS"></td>
             <td id="2hrS"></td>
@@ -187,7 +187,7 @@ asdf -->
             <td id="4hrS"></td>
             <td id="5hrS"></td>
           </tr>
-          <tr id="tempRow">
+          <tr class="todayWeather" id="tempRow">
             <td id="nowT" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="1hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="2hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
@@ -196,7 +196,7 @@ asdf -->
             <td id="5hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
           </tr>
           <tr id="forcastDay1">
-            <td id="day1"></td>
+            <td class="day" id="day1"></td>
             <td></td>
             <td id="day1S" colspan="2">
               <span id="day1R" style="color:blue"></span>
@@ -204,7 +204,7 @@ asdf -->
             <td id="day1HL" colspan="2" style="text-align: right;"><span id="day1H"></span><span id="day1L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
           <tr id="forcastDay2">
-            <td id="day2"></td>
+            <td class="day" id="day2"></td>
             <td></td>
             <td id="day2S" colspan="2">
               <span id="day2R" style="color:blue"></span>
@@ -212,7 +212,7 @@ asdf -->
             <td id="day2HL" colspan="2" style="text-align: right;"><span id="day2H"></span><span id="day2L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
           <tr id="forcastDay3">
-            <td id="day3"></td>
+            <td class="day" id="day3"></td>
             <td></td>
             <td id="day3S" colspan="2">
               <span id="day3R" style="color:blue"></span>
@@ -220,7 +220,7 @@ asdf -->
             <td id="day3HL" colspan="2" style="text-align: right;"><span id="day3H"></span><span id="day3L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
           <tr id="forcastDay4">
-            <td id="day4"></td>
+            <td class="day" id="day4"></td>
             <td></td>
             <td id="day4S" colspan="2">
               <span id="day4R" style="color:blue"></span>
@@ -228,7 +228,7 @@ asdf -->
             <td id="day4HL" colspan="2" style="text-align: right;"><span id="day4H"></span><span id="day4L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
           <tr id="forcastDay5">
-            <td id="day5"></td>
+            <td class="day" id="day5"></td>
             <td></td>
             <td id="day5S" colspan="2">
               <span id="day5R" style="color:blue"></span>
@@ -238,12 +238,27 @@ asdf -->
         </table>
     </div>
 
-    </header>
+    <div id="calandar">
+        <table id="eventlist">
+          <tr>
+            <th colspan="2" id="eventHeader"><span class="fa fa-calendar" aria-hidden="true"></span>&nbsp&nbspCalandar
+              <span onclick="updateCalandar()" id="calandarRefresh" class="fa fa-refresh" aria-hidden="true">
+              </span>
+              <!-- <span id="lastCalandarUpdate" style="color:grey; float:right">11:29PM</span> -->
+            </th>
+          </tr>
+        </table>
+        <i id="lug" style="font-size:15px;color:grey">Updated: <span id="lastEventUpdate"></span></i>
+        <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none; width: 100px;">Authorize</button>
+        <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none; width: 100px;">Sign Out</button>
+      </br>
+    </div>
+
     <div id="quote">
         <table id="quotelist">
           <tr>
-            <td id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
-            </td>
+            <th id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
+            </th>
           </tr>
           <tr>
             <td id="quoteText"></td>
@@ -254,20 +269,27 @@ asdf -->
           </tr>
         </table>
     </div>
+
+    </header>
+
     <!-- <input id="newquote" type="submit" onclick="updateQuote()" value="New Quote">
     <input id="speakQuote" type="submit" onclick="sayQuote()" value="Say Quote"></br> -->
 
     <!-- </br> -->
     <!-- Google code for calandar -->
     <!--Add buttons to initiate auth sequence and sign out-->
-    <h2 style="margin-left: 20px">Upcoming Events</h2>
-    <div id="eventlist">
-        <ul class = "google" id="events"></ul>
-    </div>
-    <i id="lug" style="font-size:15px;color:grey">Updated: <span id="lastEventUpdate"></span></i>
-    <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none; width: 100px;">Authorize</button>
-    <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none; width: 100px;">Sign Out</button>
-    </br>
+<!--     <div id="calandar">
+      <h2 style="margin-left: 20px">Upcoming Events</h2>
+      <div id="eventlist">
+          <ul class = "google" id="events"></ul>
+      </div>
+      <i id="lug" style="font-size:15px;color:grey">Updated: <span id="lastEventUpdate"></span></i>
+      <button onclick="toggleEvents()" class = "google" id="authorize-button"  style="display: none; width: 100px;">Authorize</button>
+      <button onclick="toggleEvents()" class = "google" id="signout-button" style="display: none; width: 100px;">Sign Out</button>
+      </br>
+    </div> -->
+
+
 
     <!-- Custom JS files -->
     <script src="../js/google.js"></script>
@@ -287,7 +309,7 @@ asdf -->
     
     <!-- <h2 id="weatherTitle">Weather</h2> -->
     <!-- <div id="weather"></div> -->
-    <div id="news"></div>
+    <!-- <div id="news"></div> -->
     <!-- <div id="sports"></div> -->
   </body>
 </html>
