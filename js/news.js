@@ -3,6 +3,7 @@ var url = 'https://newsapi.org/v2/top-headlines?' +
            'apiKey=065d5f68a5744ac1bd764010f7fe8323';
 var req = new Request(url);
 var json;
+var jsonN;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
 var curLimit = 5;
@@ -56,6 +57,7 @@ function updateNews(){
           //if(catSelected){
 
         	json = data;
+          jsonN = json;
         	var html = '<h2>'+'Top Stories'+'</h2>';
           html += formHtml;
         	html += '<ul>';

@@ -134,9 +134,10 @@
                 //alert(when);
               }
               var ap = "AM";
-              if (hour   > 11) { ap = "PM";             }
+
               var d = new Date(when);
               var hour   = d.getHours();
+              if (hour   > 11) { ap = "PM";             }
               var minute = d.getMinutes();
               var month = d.getMonth()+1;
               var day = d.getDate();
