@@ -5,11 +5,11 @@ var curLocReq = 0;
 var zip = 0;
 var city = '';
 var state = '';
-var baseURLw = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/hourly/forecast10day/q/"
+var baseURLw = "https://api.wunderground.com/api/4a44ed522a5071aa/conditions/hourly/forecast10day/q/"
 var query;
 var URL;
-var madisonURL = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/WI/Madison.json"
-var testURL = "http://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/autoip.json"
+var madisonURL = "https://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/WI/Madison.json"
+var testURL = "https://api.wunderground.com/api/4a44ed522a5071aa/conditions/forecast10day/q/autoip.json"
 var urlEnd = ".json"
 var jsonw;
 var lastTimeWeatherUpdated;
