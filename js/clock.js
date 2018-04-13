@@ -222,14 +222,14 @@ function updateSound(){
 
 function toggleTimerForm() {
 	if(timerRunning == 0){
-	  var minuterow = document.getElementById("minuterow");
-	  $("#minuterow").toggle('slow');
+	  //var minuterow = document.getElementById("minuterow");
+	  $("#minuterow").toggle('slow', function() {
+    	document.getElementById("minsfortimer").focus();
+  		});
    	  $("#secondrow").toggle('slow');
   	  $("#selectrow").toggle('slow');
-      if (minuterow.style.display === "none") {
-		minuterow.focus();
-	  }
-	}
+  	  $("#inputrow").toggle('slow');
+  	}
 }
 
 

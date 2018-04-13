@@ -107,7 +107,7 @@ function updateWeather(){
           var dayLow; //need to put 2 spaces on the front of this string, see line 200 in gui.html
 
           for(i = 1; i < 6; i++){
-            day = forecast[i].date.weekday;
+            day = forecast[i].date.weekday_short;
             daySymbol = forecast[i].icon_url;
             daypop = forecast[i].pop + '%';
             dayHigh = forecast[i].high.fahrenheit;

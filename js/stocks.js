@@ -295,11 +295,10 @@ function addSymbol(){
 }
 
 function toggleStockForm() {
-    var x = document.getElementById("stockForm");
-    $("#stockForm").toggle('slow');
-    if (x.style.display === "none") {
-       document.getElementById("newstock").focus();
-	}
+    //var x = document.getElementById("stockForm");
+    $("#stockForm").toggle('slow', function() {
+    	document.getElementById("newstock").focus();
+  	});
 }
 
 // function toggleTimerForm() {

@@ -292,7 +292,7 @@ div#stocks {
 div#quote {
     /*width: 25%;*/
     /*background: red;*/
-    float: left;
+    float: right;
     margin-left: 20px;
     width: 15%;
 }
