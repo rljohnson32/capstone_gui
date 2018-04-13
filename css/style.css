@@ -233,13 +233,13 @@ div#stocks {
   padding-bottom: 2px;
 }
 
-#minuterow{
-  margin-top: 5px;
+/*.mrow{
+  margin-top: 10px;
 }
 
 #minsfortimer{
-  margin-left: 2px;
-}
+  padding-left: 2px;
+}*/
 
 #quoteShuffle{
   float: right;

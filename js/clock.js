@@ -222,25 +222,16 @@ function updateSound(){
 
 function toggleTimerForm() {
 	if(timerRunning == 0){
-	    var minuterow = document.getElementById("minuterow");
-	    var secondrow = document.getElementById("secondrow");
-	    var selectrow = document.getElementById("selectrow");
-	    if (minuterow.style.display === "none") {
-	        minuterow.style.display = "block";
-	        secondrow.style.display = "block";
-			selectrow.style.display = "block";
-			inputrow.style.display = "block";
-
-	        //document.getElementById("newstock").focus();
-
-	    } else {
-	        minuterow.style.display = "none";
-	        secondrow.style.display = "none";
-			selectrow.style.display = "none";
-			inputrow.style.display = "none";
-	    }
+	  var minuterow = document.getElementById("minuterow");
+	  $("#minuterow").toggle('slow');
+   	  $("#secondrow").toggle('slow');
+  	  $("#selectrow").toggle('slow');
+      if (minuterow.style.display === "none") {
+		minuterow.focus();
+	  }
 	}
 }
+
 
 
 

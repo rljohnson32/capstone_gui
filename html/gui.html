@@ -51,8 +51,8 @@ asdf -->
           </tr>
           <tr></tr>
           <tr id="minuterow" style="display:none">
-            <td>Minutes:</td>
-            <td><input type="text" size="4" maxlength="2" max="59" id="minsfortimer" placeholder="0-59"></td>
+            <td class="mrow">Minutes:</td>
+            <td><input type="text" size="4" maxlength="2" max="59" id="minsfortimer" class="mrow" placeholder="0-59"></td>
           </tr>
           <tr id="secondrow" style="display:none">
             <td>Seconds:</td>
@@ -116,7 +116,7 @@ asdf -->
           </tr>
         </table>
         <!-- <input id="speak" type="submit" onclick="sayStocks()" value="Speak Stocks"></br> -->
-    <i style="font-size:15px;color:grey">Updated: <span id="lastStockUpdate"></span></i>
+    <i style="font-size:15px;color:grey">Updated: <span id="lastStockUpdate"></span><span onclick="updateStocks()" id="stockRefresh" class="fa fa-refresh" style="float:right; padding-top:5px" aria-hidden="true"></i>
     
 </br>
     <div id="stockForm" style="display:none">
@@ -134,7 +134,7 @@ asdf -->
               &nbsp&nbspWeather
               <span onclick="updateWeather()" id="weatherRefresh" class="fa fa-refresh" aria-hidden="true">
               </span>
-              <span id="lastWeatherUpdate" style="color:grey; float:right"></span>
+              <span id="lastWeatherUpdate" style="color:grey; float:right; font-size:15px"></span>
 
             </th>
           </tr>
@@ -169,7 +169,7 @@ asdf -->
             <td id="4hr"></td>
             <td id="5hr"></td>
           </tr>
-          <tr class="todayWeather" id="rainChanceRow" style="color:blue">
+          <tr class="todayWeather" id="rainChanceRow" style="color:#42c5f4">
             <td id="nowR" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="1hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="2hrR" style="padding-top: 0px; padding-bottom: 0px"></td>
@@ -193,52 +193,54 @@ asdf -->
             <td id="4hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
             <td id="5hrT" style="padding-top: 0px; padding-bottom: 0px"></td>
           </tr>
-          <tr id="forcastDay1">
+          <tr id="forcastDay1" style="display:none">
             <td class="day" id="day1"></td>
             <td></td>
             <td id="day1S"></td>
-              <td><span id="day1R" style="color:blue"></span>
+              <td><span id="day1R" style="color:#42c5f4"></span>
             </td>
             <td id="day1HL" colspan="2" style="text-align: right;"><span id="day1H"></span><span id="day1L" style="color:grey">&nbsp&nbsp</span>
             </td>
           </tr>
-          <tr id="forcastDay2">
+          <tr id="forcastDay2" style="display:none">
             <td class="day" id="day2"></td>
             <td></td>
             <td id="day2S"></td>
             <td>
-              <span id="day2R" style="color:blue"></span>
+              <span id="day2R" style="color:#42c5f4"></span>
             </td>
             <td id="day2HL" colspan="2" style="text-align: right;"><span id="day2H"></span><span id="day2L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
-          <tr id="forcastDay3">
+          <tr id="forcastDay3" style="display:none">
             <td class="day" id="day3"></td>
             <td></td>
             <td id="day3S"></td>
             <td>
-              <span id="day3R" style="color:blue"></span>
+              <span id="day3R" style="color:#42c5f4"></span>
             </td>
             <td id="day3HL" colspan="2" style="text-align: right;"><span id="day3H"></span><span id="day3L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
-          <tr id="forcastDay4">
+          <tr id="forcastDay4" style="display:none">
             <td class="day" id="day4"></td>
             <td></td>
             <td id="day4S"></td>
             <td>
-              <span id="day4R" style="color:blue"></span>
+              <span id="day4R" style="color:#42c5f4"></span>
             </td>
             <td id="day4HL" colspan="2" style="text-align: right;"><span id="day4H"></span><span id="day4L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
-          <tr id="forcastDay5">
+          <tr id="forcastDay5" style="display:none">
             <td class="day" id="day5"></td>
             <td></td>
             <td id="day5S"></td>
             <td>
-              <span id="day5R" style="color:blue"></span>
+              <span id="day5R" style="color:#42c5f4"></span>
             </td>
             <td id="day5HL" colspan="2" style="text-align: right;"><span id="day5H"></span><span id="day5L" style="color:grey">&nbsp&nbsp</span></td>
           </tr>
+          <!-- <tr id="bufferRow1" style=""><td colspan="2"><span id="toggleForecast" onclick="toggleForecast()" style="color:grey; float:left">Show Forecast</span></td></tr> -->
         </table>
+        <span id="toggleForecastButton" onclick="toggleForecast()" style="color:grey; float:left; padding-bottom:20px">Show Forecast</span>
     </div>
 
     <div id="calandar">

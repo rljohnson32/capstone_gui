@@ -25,8 +25,9 @@ function updateStocks(){
   if (hour   > 12) { hour = hour - 12;      }
   if (hour   == 0) { hour = 12;             }
   if (minute < 10) { minute = "0" + minute; }
+  console.log('hour: ' + hour);
 
-  if(hour < 5 || !updatedOnce){
+  if(d.getHours() < 18 || !updatedOnce){
     updatedOnce = true;
     $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
 
@@ -295,13 +296,23 @@ function addSymbol(){
 
 function toggleStockForm() {
     var x = document.getElementById("stockForm");
+    $("#stockForm").toggle('slow');
     if (x.style.display === "none") {
-        x.style.display = "block";
-        document.getElementById("newstock").focus();
-    } else {
-        x.style.display = "none";
-    }
+       document.getElementById("newstock").focus();
+	}
 }
+
+// function toggleTimerForm() {
+// 	if(timerRunning == 0){
+// 	  var minuterow = document.getElementById("minuterow");
+// 	  $("#minuterow").toggle('slow');
+//    	  $("#secondrow").toggle('slow');
+//   	  $("#selectrow").toggle('slow');
+//       if (minuterow.style.display === "none") {
+// 		minuterow.focus();
+// 	  }
+// 	}
+// }
 
 var stockEnter = document.getElementById("newstock");
 stockEnter.addEventListener("keyup", function(event) {

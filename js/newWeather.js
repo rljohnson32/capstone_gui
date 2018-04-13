@@ -106,17 +106,17 @@ function updateWeather(){
           var dayHigh;
           var dayLow; //need to put 2 spaces on the front of this string, see line 200 in gui.html
 
-          for(i = 0; i < 5; i++){
+          for(i = 1; i < 6; i++){
             day = forecast[i].date.weekday;
             daySymbol = forecast[i].icon_url;
             daypop = forecast[i].pop + '%';
             dayHigh = forecast[i].high.fahrenheit;
             dayLow = '&nbsp&nbsp&nbsp' + forecast[i].low.fahrenheit + '&nbsp&nbsp&nbsp';
-            $("#day" + (i+1)).html(day);
-            $("#day" + (i+1) + 'S').html('<img src="' + daySymbol + '">');
-            $("#day" + (i+1) + 'R').html(daypop);
-            $("#day" + (i+1) + 'H').html(dayHigh);
-            $("#day" + (i+1) + 'L').html(dayLow);
+            $("#day" + (i)).html(day);
+            $("#day" + (i) + 'S').html('<img src="' + daySymbol + '">');
+            $("#day" + (i) + 'R').html(daypop);
+            $("#day" + (i) + 'H').html(dayHigh);
+            $("#day" + (i) + 'L').html(dayLow);
           }
 
           // //alert("Current temperature in " + location + " is: " + temp_f);
@@ -180,6 +180,22 @@ function toggleWeatherForm(){
   } else {
       x.style.display = "none";
   }
+}
+
+function toggleForecast(){
+  var f1 = document.getElementById("forcastDay1");
+  if (f1.style.display === "none") {
+      $("#toggleForecastButton").html('Hide Forecast');
+      // document.getElementById("newstock").focus();
+  } else {
+      $("#toggleForecastButton").html('Show Forecast');
+  }
+  $("#forcastDay1").toggle('slow');
+  $("#forcastDay2").toggle('slow');
+  $("#forcastDay3").toggle('slow');
+  $("#forcastDay4").toggle('slow');
+  $("#forcastDay5").toggle('slow');
+
 }
 
 function sayCurrentWeather(){
