@@ -74,9 +74,13 @@ function updateNews(){
             var title = json.articles[i].title;
             var url = json.articles[i].url;
             var image = json.articles[i].urlToImage;
+            if(!image){
+              continue;
+            }
             if(image.indexOf('http') == -1){
               continue;
             }
+            
             topThreeHeadlines.push(json.articles[i].title);
             var html;
 
@@ -134,6 +138,7 @@ function toggleNewsForm() {
 
 //lol this is hacky af
 function clearNewsList(){
+  topThreeHeadlines = [];
   var html = '<table id="newslist"><tr><th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews<span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true"></span><span id="lastNewsUpdate" style="color:grey; float:right"></span></th></tr></table>        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>';
   $("#news").html(html);
 }
