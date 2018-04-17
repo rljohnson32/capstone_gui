@@ -25,6 +25,7 @@ var timerRunning = 0;
 var timerSounds = ["1", "2", "3", "4", "5", "6"];
 var curAlarm = "1";
 var dateString;
+var dateStringSay;
 
 $(document).ready(function() {  
   updateClock(); //Set initial time on page load
@@ -39,7 +40,7 @@ function updateClock(){
 	var minute = now.getMinutes();
 	var second = now.getSeconds();
 	var ap = "AM";
-	var html = '<h2>'
+	//var html = '<h2>'
 	if (hour   > 11) { ap = "PM";             }
 	if (hour   > 12) { hour = hour - 12;      }
 	if (hour   == 0) { hour = 12;             }
@@ -47,41 +48,41 @@ function updateClock(){
 	if (minute < 10) { minute = "0" + minute; }
 	if (second < 10) { second = "0" + second; }
 	var timeString = hour + ':' + minute/* + ':' + second*/ + " " + ap;
-
-	html += timeString + '</h2>'
 	var weekDay = weekdays[now.getDay()];
 	var month = months[now.getMonth()];
 	var day = now.getDate();
-	html += '<b>'+weekDay + ', ' + month + ' ' + day+'</b>';
-	dateString = weekDay + ', ' + month + ' ' + day;
+	dateStringSay = weekDay + ', ' + month + ' ' + day;
+	dateString = dateStringSay;
+	var greeting;
 	
 	if(day == 1){
-		dateString += 'st';
+		dateStringSay += 'st';
 	}
 	else if(day == 2){
-		dateString += 'nd';
+		dateStringSay += 'nd';
 	}
 	else if(day == 3){
-		dateString += 'rd';
+		dateStringSay += 'rd';
 	}
 	else{
-		dateString += 'th';
+		dateStringSay += 'th';
 	}
 
 	if(now.getHours() < 12){
-		html += '<p>Good Morning!</br></p>';
+		greeting = 'Good Morning!';
 	}
 	else if(now.getHours() < 16){
-		html += '<p>Good Afternoon!</br></p>';
+		greeting = 'Good Afternoon!';
 	}
 	else{
-		html += '<p>Good Evening!</br></p>';
+		greeting = 'Good Evening!';
 	}
+	$("#timeString").html(timeString);
+	$("#date").html(dateString);
+	$("#greeting").html(greeting);
 	// html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say">';
 
 	//html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br>';
-
-	$("#clock").html(html);
 }
 
 function sayCurrentTime(){
@@ -100,7 +101,7 @@ function sayCurrentTime(){
 }
 
 function sayCurrentDate(){
-	responsiveVoice.speak('Today is ' + dateString, "US English Female");	
+	responsiveVoice.speak('Today is ' + dateStringSay, "US English Female");	
 
 }
 
@@ -162,6 +163,11 @@ function clearTimer(){
 }
 
 var x;
+
+function setTimerTest(min){
+	$("#minsfortimer").val(min)
+	setTimer();
+}
 
 function setTimer(){
 	if(timerRunning == 0){

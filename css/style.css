@@ -10,17 +10,18 @@ div#clock {
     /*background: red;*/
     float: left;
     /*margin-right: 20px;*/
+    width:165px;
     margin-bottom: 20px;
 }
-#greeting {
-    /*margin-left: 15%;*/
-    /*height: 70px;*/
-    /*background: red;*/
-    /*text-align: 50%;*/
-    /*float: left;*/
+/*#greeting {
+    margin-left: 15%;
+    height: 70px;
+    background: red;
+    text-align: 50%;
+    float: left;
     margin-left: 20px;
     width: 30%;
-}
+}*/
 
 #calandar{
   float:left;
@@ -408,7 +409,6 @@ th {
   }*/
 
   #news{
-    width: 50%;
     float: left;
     /*border:1px solid black;*/
     margin-left: 20px;
@@ -422,7 +422,7 @@ th {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
-    width: 500px;
+    width: 400px;
     /*width: 100%;*/
 }
 
@@ -433,7 +433,12 @@ th {
 }
 
 #newslist td img{
-  width: 400px;
+  width: 200px;
+}
+
+.articleTitle{
+  width: 200px;
+  vertical-align:top;
 }
 
 /*#stocklist tr {

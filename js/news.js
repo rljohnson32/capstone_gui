@@ -8,13 +8,13 @@ var categories = ["business","entertainment","general","health","science","sport
 var category = "none";
 var curLimit = 5;
 var lastTimeNewsUpdated;
+var topThreeHeadlines = [];
 
 var formHtml =  '<h4>'+'Select A Category'+'</h4>'+
                 '<select id=\'drop\' oninput="updateURL()">\
                       <option value="none"> All<br>\
                       <option value="business"> Business<br>\
                       <option value="entertainment"> Entertainment<br>\
-                      <option value="general"> General<br>\
                       <option value="health"> Health<br>\
                       <option value="science"> Science<br>\
                       <option value="sports"> Sports<br>\
@@ -59,6 +59,12 @@ function updateNews(){
 
         	json = data;
           jsonN = json;
+          // var headline1 = json.articles[0].title;
+          // var headline2 = json.articles[1].title;
+          // var headline3 = json.articles[2].title;
+          // topThreeHeadlines.push(headline1);
+          // topThreeHeadlines.push(headline2);
+          // topThreeHeadlines.push(headline3);
         	//var html = '<h2>'+'Top Stories'+'</h2>';
           $("#newsForm").html(formHtml);
           clearNewsList();
@@ -68,9 +74,13 @@ function updateNews(){
             var title = json.articles[i].title;
             var url = json.articles[i].url;
             var image = json.articles[i].urlToImage;
+            if(image.indexOf('http') == -1){
+              continue;
+            }
+            topThreeHeadlines.push(json.articles[i].title);
             var html;
 
-      		  html = '<tr><td><b>'+ title + '</b></td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
+      		  html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
       		  // html += '<a href="'+ json.articles[i].url +'" target="_blank">Link To Article</a></br></br>';
           //Ideas:
           //
@@ -109,6 +119,12 @@ function updateLastUpdateNews(){
 function showMore(){
   curLimit += 5; 
   updateNews();
+}
+
+function readNews(){
+  for(var i = 0; i<topThreeHeadlines.length; i++){
+    responsiveVoice.speak(topThreeHeadlines[i], "US English Female");
+  }
 }
 
 function toggleNewsForm() {

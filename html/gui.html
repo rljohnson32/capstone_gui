@@ -27,10 +27,15 @@ asdf -->
     <header>
       <!-- <p id="latest-word"></p> -->
 
-      <div id="clock"></div>
+      <div id="clock">
+        <h2 id="timeString"></h2>
+        <b id="date"></b>
+        <p id="greeting"></p>
+        <div id="countdown"></div>
+      </div>
       <!-- <div id="greeting"></div> -->
 
-      <div id="timer">
+      <div id="timer" style="display:none">
         <!-- <h4>Timer</h4>
         <select id="soundPicker" oninput="updateSound()">
                       <option value="1"> Default<br>
@@ -243,6 +248,20 @@ asdf -->
         <span id="toggleForecastButton" onclick="toggleForecast()" style="color:grey; float:left; padding-bottom:20px">Show Forecast</span>
     </div>
 
+    <div id="newsForm" style="display:none"></div>
+    <div id="news">
+        <table id="newslist">
+          <tr>
+            <th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews
+              <span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true">
+              </span>
+              <span id="lastNewsUpdate" style="color:grey; float:right"></span>
+            </th>
+          </tr>
+        </table>
+        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>
+    </div>
+
     <div id="quote">
         <table id="quotelist">
           <tr>
@@ -257,20 +276,6 @@ asdf -->
             <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
           </tr>
         </table>
-    </div>
-
-    <div id="newsForm" style="display:none"></div>
-    <div id="news">
-        <table id="newslist">
-          <tr>
-            <th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews
-              <span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true">
-              </span>
-              <span id="lastNewsUpdate" style="color:grey; float:right"></span>
-            </th>
-          </tr>
-        </table>
-        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>
     </div>
 
     <div id="calandar">

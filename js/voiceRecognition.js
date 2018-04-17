@@ -49,7 +49,8 @@ recognition.onresult = function(event){
   // get length of latest results
   var ArrayLength = event.results[resultsLength].length -1;
   // get last word detected
-  var saidWord = event.results[resultsLength][ArrayLength].transcript;
+  var saidWord = (event.results[resultsLength][ArrayLength].transcript).toLowerCase();
+  console.log('Processing voice: ' + saidWord);
   //var prevWord = event.results[resultsLength][ArrayLength-1].transcript;
 
   if (saidWord.indexOf('weather') !== -1){
@@ -111,7 +112,42 @@ recognition.onresult = function(event){
     $("#secsfortimer").val(seconds);
     setTimer();
 
-  } 
+  }
+
+  else if(saidWord.indexOf('news') !== -1){
+    //$("#drop").val();
+    if(saidWord.indexOf('categor') !== -1){
+      if(saidWord.indexOf('business') !== -1){
+        $("#drop").val('business');
+        updateURL();
+      }
+      else if(saidWord.indexOf('entertainment') !== -1){
+        $("#drop").val('entertainment');
+        updateURL();
+      }
+      else if(saidWord.indexOf('health') !== -1){
+        $("#drop").val('health');
+        updateURL();
+      }
+      else if(saidWord.indexOf('science') !== -1){
+        $("#drop").val('science');
+        updateURL();
+      }
+      else if(saidWord.indexOf('sport') !== -1){
+        $("#drop").val('sports');
+        updateURL();
+      }
+      
+      else if(saidWord.indexOf('tech') !== -1){
+        $("#drop").val('technology');
+        updateURL();
+      }
+    }
+    else if(saidWord.indexOf('read') !== -1){
+      readNews();
+    }
+
+  }
 
   else if(saidWord.indexOf('time') !== -1){
     sayCurrentTime();
@@ -123,6 +159,10 @@ recognition.onresult = function(event){
 
   else if(saidWord.indexOf('rain') !== -1){
     sayRainChance();
+  }
+
+  else if(saidWord.indexOf('forecast') !== -1){
+    toggleForecast();
   }
 
 
@@ -147,7 +187,7 @@ recognition.onresult = function(event){
     }
     
 
-    else{
+    else if(saidWord.indexOf('update') !== -1){
      sayStocks(); 
     }
   }   
