@@ -7,6 +7,7 @@ var jsonN;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
 var curLimit = 5;
+var lastTimeNewsUpdated;
 
 var formHtml =  '<h4>'+'Select A Category'+'</h4>'+
                 '<select id=\'drop\' oninput="updateURL()">\
@@ -58,20 +59,28 @@ function updateNews(){
 
         	json = data;
           jsonN = json;
-        	var html = '<h2>'+'Top Stories'+'</h2>';
-          html += formHtml;
-        	html += '<ul>';
+        	//var html = '<h2>'+'Top Stories'+'</h2>';
+          $("#newsForm").html(formHtml);
+          clearNewsList();
+
+        	//html += '<ul>';
         	for (i = 0; i < curLimit; i++) { 
-      		  html += '<li>'+json.articles[i].title+'<a href="'+ json.articles[i].url +'" target="_blank"><img class="img-thumbnail" src=' + json.articles[i].urlToImage +'></a></br></br></li>';
+            var title = json.articles[i].title;
+            var url = json.articles[i].url;
+            var image = json.articles[i].urlToImage;
+            var html;
+
+      		  html = '<tr><td><b>'+ title + '</b></td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
       		  // html += '<a href="'+ json.articles[i].url +'" target="_blank">Link To Article</a></br></br>';
           //Ideas:
           //
+          $("#newslist").append(html);
   		    }
-  		    html += '</ul>';
-          html += '<button id="showMoreButton" onclick="showMore()" >Show More</button>'
+  		    //html += '</ul>';
+          //html += '<button id="showMoreButton" onclick="showMore()" >Show More</button>'
     
-        $("#news").html(html);
         category = document.getElementById("drop").value = category;
+        updateLastUpdateNews();
         	//json = response.json();
           //console.log(json.status);
        })
@@ -80,9 +89,37 @@ function updateNews(){
     });
 }
 
+function updateLastUpdateNews(){
+
+  var d = new Date();
+  var hour   = d.getHours();
+  var minute = d.getMinutes();
+  var ap = "AM";
+  if (hour   > 11) { ap = "PM";             }
+  if (hour   > 12) { hour = hour - 12;      }
+  if (hour   == 0) { hour = 12;             }
+  if (minute < 10) { minute = "0" + minute; }
+  lastTimeNewsUpdated = hour + ':' + minute + ' ' + ap;
+  $('#lastNewsUpdate').html(lastTimeNewsUpdated);
+  //$('#lastWeatherUpdate').html(hour + ':' + minute + ' ' + ap);
+  //alert('updated with' + hour + ':' + minute + ' ' + ap);
+  //alert($('#lastWeatherUpdate').html());
+}
+
 function showMore(){
   curLimit += 5; 
   updateNews();
+}
+
+function toggleNewsForm() {
+    //var x = document.getElementById("stockForm");
+    $("#newsForm").toggle('slow');
+}
+
+//lol this is hacky af
+function clearNewsList(){
+  var html = '<table id="newslist"><tr><th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews<span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true"></span><span id="lastNewsUpdate" style="color:grey; float:right"></span></th></tr></table>        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>';
+  $("#news").html(html);
 }
 
 /*

@@ -418,10 +418,11 @@ th {
   }
 
     #newslist {
-    border:1px solid black;
+    /*border:1px solid black;*/
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
+    width: 500px;
     /*width: 100%;*/
 }
 
@@ -429,6 +430,10 @@ th {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 8px;
+}
+
+#newslist td img{
+  width: 400px;
 }
 
 /*#stocklist tr {
@@ -441,6 +446,14 @@ th {
 
 #newslist tr:hover {
   background-color: #ddd;
+}
+
+#newsRefresh{
+  float: right;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+  padding-left: 10px;
 }
 
 #showMoreButton{

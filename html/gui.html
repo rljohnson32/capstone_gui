@@ -243,6 +243,36 @@ asdf -->
         <span id="toggleForecastButton" onclick="toggleForecast()" style="color:grey; float:left; padding-bottom:20px">Show Forecast</span>
     </div>
 
+    <div id="quote">
+        <table id="quotelist">
+          <tr>
+            <th id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
+            </th>
+          </tr>
+          <tr>
+            <td id="quoteText"></td>
+          </tr>
+          <tr>
+            <td id="authorName"></td>
+            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
+          </tr>
+        </table>
+    </div>
+
+    <div id="newsForm" style="display:none"></div>
+    <div id="news">
+        <table id="newslist">
+          <tr>
+            <th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews
+              <span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true">
+              </span>
+              <span id="lastNewsUpdate" style="color:grey; float:right"></span>
+            </th>
+          </tr>
+        </table>
+        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>
+    </div>
+
     <div id="calandar">
         <table id="eventlist">
           <tr>
@@ -259,21 +289,6 @@ asdf -->
       </br>
     </div>
 
-    <div id="quote">
-        <table id="quotelist">
-          <tr>
-            <th id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
-            </th>
-          </tr>
-          <tr>
-            <td id="quoteText"></td>
-          </tr>
-          <tr>
-            <td id="authorName"></td>
-            <!-- <td><button class="btn"><i class="fa fa-close"></i></button></td> -->
-          </tr>
-        </table>
-    </div>
 
     </header>
 
@@ -314,7 +329,6 @@ asdf -->
     
     <!-- <h2 id="weatherTitle">Weather</h2> -->
     <!-- <div id="weather"></div> -->
-    <div id="news"></div>
     <!-- <div id="sports"></div> -->
   </body>
 </html>
