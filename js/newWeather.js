@@ -37,7 +37,7 @@ function updateWeather(){
       query = state + '/' + city;
     }
     else{
-      query = 53029;
+      query = 53706;
     }
   }
   else{

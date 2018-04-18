@@ -25,7 +25,6 @@ function updateStocks(){
   if (hour   > 12) { hour = hour - 12;      }
   if (hour   == 0) { hour = 12;             }
   if (minute < 10) { minute = "0" + minute; }
-  console.log('hour: ' + hour);
 
   if(d.getHours() < 18 || !updatedOnce){
     updatedOnce = true;

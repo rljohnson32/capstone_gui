@@ -57,6 +57,9 @@ recognition.onresult = function(event){
     if(saidWord.indexOf('local') !== -1){
       getLocation();
     }
+    else if(saidWord.indexOf('forecast') !== -1){
+      toggleForecast();
+    }
     
     var regReturnZip = saidWord.match(/\d{5}/g);
     if(regReturnZip){
@@ -146,6 +149,9 @@ recognition.onresult = function(event){
     else if(saidWord.indexOf('read') !== -1){
       readNews();
     }
+    else if(saidWord.indexOf('more') !== -1){
+      showMore();
+    }
 
   }
 
@@ -187,7 +193,7 @@ recognition.onresult = function(event){
     }
     
 
-    else if(saidWord.indexOf('update') !== -1){
+    else if(saidWord.indexOf('brief') !== -1){
      sayStocks(); 
     }
   }   
