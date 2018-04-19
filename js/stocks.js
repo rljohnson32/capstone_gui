@@ -141,8 +141,11 @@ function sayStocks(){
   var DOWval = $("#DJI")[0].innerHTML.replace('-', '');
   var NASDAQval = $("#IXIC")[0].innerHTML.replace('-', '');
   var SP500val = $("#GSPC")[0].innerHTML.replace('-', '');
+  DOWval = DOWval.replace('+', '');
+  NASDAQval = NASDAQval.replace('+', '');
+  SP500val = SP500val.replace('+', '');
   //var DOWpos = (parseFloat(DOWval.replace('%', '')) > 0) ? "up" : "down";
-  var DOWpos = (document.getElementById('GSPC').style.color == "red") ? "down" : "up";
+  var DOWpos = (document.getElementById('DJI').style.color == "red") ? "down" : "up";
   //var NASDAQpos = (parseFloat(NASDAQval.replace('%', '').replace('-', '')) > 0) ? "up" : "down";
   var NASDAQpos = (document.getElementById('IXIC').style.color == "red") ? "down" : "up";
   //var SP500pos = (parseFloat(SP500val.replace('%', '').replace('-', '')) > 0) ? "up" : "down";

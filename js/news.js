@@ -6,7 +6,7 @@ var json;
 var jsonN;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
-var curLimit = 5;
+var curLimit = 3;
 var lastTimeNewsUpdated;
 var topThreeHeadlines = [];
 
@@ -75,13 +75,18 @@ function updateNews(){
             var url = json.articles[i].url;
             var image = json.articles[i].urlToImage;
             if(!image){
+              curLimit++;
               continue;
             }
             if(image.indexOf('http') == -1){
+              curLimit++;
               continue;
             }
             
-            topThreeHeadlines.push(json.articles[i].title);
+            if(topThreeHeadlines.length < 3){
+              topThreeHeadlines.push(json.articles[i].title); 
+            }
+
             var html;
 
       		  html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
@@ -121,7 +126,7 @@ function updateLastUpdateNews(){
 }
 
 function showMore(){
-  curLimit += 5; 
+  curLimit += 3; 
   updateNews();
 }
 
