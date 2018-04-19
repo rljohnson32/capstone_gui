@@ -79,7 +79,7 @@ recognition.onresult = function(event){
 
     setTimeout(function(){
       sayCurrentWeather();
-    }, 500);
+    }, 750);
 
   }
   else if(saidWord.indexOf('quote') !== -1){
