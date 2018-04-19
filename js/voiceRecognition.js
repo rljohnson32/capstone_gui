@@ -28,7 +28,7 @@ add special things if weather is gonna be nice
 
 var weatherFlag = 0;
 var recognition = new webkitSpeechRecognition();
-//recognition.continuous = true;
+recognition.continuous = true;
 recognition.start();
 
 setInterval(resetVoiceRecog, 10000);
