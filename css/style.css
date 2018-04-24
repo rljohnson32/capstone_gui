@@ -2,7 +2,8 @@ html *
 {
    background-color: #000 !important;
    color: #fff;
-   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+   /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*
@@ -566,7 +567,18 @@ th {
     padding-bottom: 10px;
     margin-top: 10px;
 }
+
+/*#footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+   margin-left: 25%;
+}*/
 #center {
-    width: 500px;
+    width: 50%;
     margin: 0 auto;
 }

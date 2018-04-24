@@ -417,6 +417,7 @@ var quotesComb = quotes.concat(quotes2);
 
 $(document).ready(function() {  
   updateQuote();
+  setInterval(updateQuote, 60*60000); //Update the quote every hour.
 });
 var quoteIndex;
 var quote;

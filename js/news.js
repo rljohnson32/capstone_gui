@@ -6,9 +6,12 @@ var json;
 var jsonN;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
-var curLimit = 3;
+var curLimit = 4;
 var lastTimeNewsUpdated;
 var topThreeHeadlines = [];
+var lowerIndex = 0;
+var i = 0; 
+var upperIndex = 4;
 
 var formHtml =  '<h4>'+'Select A Category'+'</h4>'+
                 '<select id=\'drop\' oninput="updateURL()">\
@@ -29,7 +32,6 @@ $(document).ready(function() {
 
 function updateURL(){
   category = document.getElementById("drop").value;
-  curLimit = 3;
   if(category == "none"){
     url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' +
@@ -41,6 +43,7 @@ function updateURL(){
           'category=' + category + '&' +
           'apiKey=065d5f68a5744ac1bd764010f7fe8323';
   }
+  i = 0;
   updateNews();
 }
 
@@ -62,10 +65,38 @@ function updateNews(){
           clearNewsList();
 
           var added = 0;
-        	for (i = 0; added < curLimit; i++) { 
+        // 	for (i = lowerIndex; added < curLimit; i++) { 
+        //     var title = json.articles[i].title;
+        //     var url = json.articles[i].url;
+        //     var image = json.articles[i].urlToImage;
+        //     if(!image){
+        //       continue;
+        //     }
+        //     if(image.indexOf('http') == -1){
+        //       continue;
+        //     }
+            
+        //     if(topThreeHeadlines.length < 3){
+        //       topThreeHeadlines.push(json.articles[i].title); 
+        //     }
+
+        //     added++;
+
+        //     var html;
+
+      		//   html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
+
+        //     $("#newslist").append(html);
+  		    // }
+          //var i = lowerIndex;
+          while (added < curLimit) { 
             var title = json.articles[i].title;
             var url = json.articles[i].url;
             var image = json.articles[i].urlToImage;
+            i++;
+            if(i>= json.articles.length){
+              i = 0;
+            }
             if(!image){
               continue;
             }
@@ -74,17 +105,17 @@ function updateNews(){
             }
             
             if(topThreeHeadlines.length < 3){
-              topThreeHeadlines.push(json.articles[i].title); 
+              topThreeHeadlines.push(title); 
             }
 
             added++;
 
             var html;
 
-      		  html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
+            html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
 
             $("#newslist").append(html);
-  		    }
+          }
   		  
     
         category = document.getElementById("drop").value = category;
@@ -115,13 +146,13 @@ function updateLastUpdateNews(){
 }
 
 function showMore(){
-  curLimit += 3; 
+  //curLimit += 3; 
   updateNews();
 }
 
 function readNews(){
-  for(var i = 0; i<topThreeHeadlines.length; i++){
-    responsiveVoice.speak(topThreeHeadlines[i], "US English Female");
+  for(var j = 0; j<topThreeHeadlines.length; i++){
+    responsiveVoice.speak(topThreeHeadlines[j], "US English Female");
   }
 }
 
