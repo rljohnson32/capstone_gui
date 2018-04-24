@@ -153,6 +153,17 @@
           }
         });
       }
+    function updateCalandar(){
+          var d = new Date();
+          var houru   = d.getHours();
+          var minuteu = d.getMinutes();
+          var apu = "AM";
+          if (houru   > 11) { apu = "PM";             }
+          if (houru   > 12) { houru = houru - 12;     }
+          if (houru   == 0) { houru = 12;             }
+          if (minuteu < 10) { minuteu= "0" + minuteu; }
+          $('#lastEventUpdate').html(houru + ':' + minuteu + ' ' + apu);
+    }
 
 function toggleEvents(){
   $('#eventlist').toggle();

@@ -8,6 +8,7 @@ var lastClose = '';
 var addedSymbols = [];
 var addedPairs = [];
 var updatedOnce = false;
+var shouldUpdate = false;
 
 
 $(document).ready(function($) {
@@ -16,17 +17,20 @@ $(document).ready(function($) {
   setInterval(updateStocks, 1*60000); //Update the stocks every 1 minutes.
 });
 
-function updateStocks(){
+function updateStocks(button){
+  console.log('Stocks button: ' + button);
   var d = new Date();
   var hour   = d.getHours();
   var minute = d.getMinutes();
   var ap = "AM";
+  shouldUpdate = ((hour < 18) && (hour > 6)) ? true : false;
   if (hour   > 11) { ap = "PM";             }
   if (hour   > 12) { hour = hour - 12;      }
   if (hour   == 0) { hour = 12;             }
   if (minute < 10) { minute = "0" + minute; }
 
-  if(d.getHours() < 18 || !updatedOnce){
+
+  if(shouldUpdate || !updatedOnce || button){ //don't undate after 6PM unless page just loaded or the refresh button was clicked
     updatedOnce = true;
     $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
 

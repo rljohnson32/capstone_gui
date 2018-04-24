@@ -29,9 +29,10 @@ var dateStringSay;
 
 $(document).ready(function() {  
   updateClock(); //Set initial time on page load
+  updateRoomTemp();
   //updateGreeting();
   setInterval(updateClock, 1000); // update the time every second
-  // setInterval(updateGreeting, 1800000); //update greeting every 30 minutes
+  setInterval(updateRoomTemp, 1*60000); //update room temp every 1 minutes
 });
 
 function updateClock(){
@@ -55,18 +56,18 @@ function updateClock(){
 	dateString = dateStringSay;
 	var greeting;
 	
-	if(day == 1){
-		dateStringSay += 'st';
-	}
-	else if(day == 2){
-		dateStringSay += 'nd';
-	}
-	else if(day == 3){
-		dateStringSay += 'rd';
-	}
-	else{
-		dateStringSay += 'th';
-	}
+	// if(day == 1){
+	// 	dateStringSay += 'st';
+	// }
+	// else if(day == 2){
+	// 	dateStringSay += 'nd';
+	// }
+	// else if(day == 3){
+	// 	dateStringSay += 'rd';
+	// }
+	// else{
+	// 	dateStringSay += 'th';
+	// }
 
 	if(now.getHours() < 12){
 		greeting = 'Good Morning!';
@@ -83,6 +84,12 @@ function updateClock(){
 	// html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say">';
 
 	//html += '<input id="speakTime" type="submit" onclick="sayCurrentTime()" value="Say"></br>';
+}
+
+function updateRoomTemp(){
+	//TODO: add an ajax call to read temp sensor and save the response for display
+	var roomtemp = '76'  + '&deg;'+' F';
+	$("#roomtemp").html(roomtemp);
 }
 
 function sayCurrentTime(){

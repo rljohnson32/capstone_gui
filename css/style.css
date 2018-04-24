@@ -5,18 +5,20 @@ html *
    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-
-/*header {
+/*
+header {
     width: 100%;
     height: 20%;
     background: aqua;
     margin-left: 10px;
     padding: 10px;
-}*/
+}
+*/
 
 body {
   padding: 10px;
 }
+
 div#clock {
     /*width: 20%;*/
     /*background: red;*/
@@ -33,6 +35,11 @@ div#clock {
 
 #timeString{
   font-size: 250%;
+  margin-bottom: 0px;
+}
+
+#roomtempstring{
+  font-size: 105%;
   margin-bottom: 0px;
 }
 
@@ -303,13 +310,11 @@ div#stocks {
     colspan="3";
 }*/
 
-div#quote {
-    /*width: 25%;*/
-    /*background: red;*/
+/*div#quote {
     float: right;
     margin-left: 20px;
     width: 15%;
-}
+}*/
 
 #quotelist {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -409,10 +414,10 @@ th {
   }*/
 
 
-  body{
+/*  body{
     background-color:black;
     color:white;
-  }
+  }*/
 
 /*  #clock{
     padding-left: 20px;
@@ -552,4 +557,16 @@ th {
     padding: 12px 16px;
     font-size: 16px;
     cursor: pointer;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+#center {
+    width: 500px;
+    margin: 0 auto;
 }

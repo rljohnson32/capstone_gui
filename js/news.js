@@ -23,13 +23,13 @@ var formHtml =  '<h4>'+'Select A Category'+'</h4>'+
                 // '<input type="submit" onclick="updateURL()" value="Update"></br>'
 
 $(document).ready(function() {  
-  updateNews(); //Get the initial weather.
-  setInterval(updateNews, 15*60000); //Update the news every 15 minutes.
+  updateNews(); //Get the initial news.
+  setInterval(updateNews, 5*60000); //Update the news every 15 minutes.
 });
 
 function updateURL(){
   category = document.getElementById("drop").value;
-  curLimit = 5;
+  curLimit = 3;
   if(category == "none"){
     url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' +
@@ -55,31 +55,21 @@ function updateNews(){
           	data.status);
           	return;
         	}
-          //if(catSelected){
 
         	json = data;
           jsonN = json;
-          // var headline1 = json.articles[0].title;
-          // var headline2 = json.articles[1].title;
-          // var headline3 = json.articles[2].title;
-          // topThreeHeadlines.push(headline1);
-          // topThreeHeadlines.push(headline2);
-          // topThreeHeadlines.push(headline3);
-        	//var html = '<h2>'+'Top Stories'+'</h2>';
           $("#newsForm").html(formHtml);
           clearNewsList();
 
-        	//html += '<ul>';
-        	for (i = 0; i < curLimit; i++) { 
+          var added = 0;
+        	for (i = 0; added < curLimit; i++) { 
             var title = json.articles[i].title;
             var url = json.articles[i].url;
             var image = json.articles[i].urlToImage;
             if(!image){
-              curLimit++;
               continue;
             }
             if(image.indexOf('http') == -1){
-              curLimit++;
               continue;
             }
             
@@ -87,16 +77,15 @@ function updateNews(){
               topThreeHeadlines.push(json.articles[i].title); 
             }
 
+            added++;
+
             var html;
 
       		  html = '<tr><td class="articleTitle">'+ title + '</td><td><a href=\'' + url + '\' target="_blank"><img class="img-thumbnail" src=\'' + image + '\'></a></td></tr>';
-      		  // html += '<a href="'+ json.articles[i].url +'" target="_blank">Link To Article</a></br></br>';
-          //Ideas:
-          //
-          $("#newslist").append(html);
+
+            $("#newslist").append(html);
   		    }
-  		    //html += '</ul>';
-          //html += '<button id="showMoreButton" onclick="showMore()" >Show More</button>'
+  		  
     
         category = document.getElementById("drop").value = category;
         updateLastUpdateNews();

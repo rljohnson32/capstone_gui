@@ -9,21 +9,6 @@ ex; How is Microsofts stock doing. or Microsoft stock or Microsoft stock update.
 Might need to search all words in captured string against all the company names (could be very slow)
 Add ability to remove sotkcs from list
 
-3.) Voice control / synthesis for news. Ability to read top stories from all categories.
-ex; Sports news update, technology news update, top news stories
-
-4.) Time:add ability to say the full date (day of week / month / day and stuff )
-
-5.) better weather voice control: 
-will it rain today/chance of rain today, 
-current temperature (add extra stuff if cold / hot like 'Brrrr' or 'wow, nice day')
-also, need to be able to change location
-weather IN london england (match IN and then 2 words)
-weahter in 53029 (match IN and then a 5 digit number)
-hows the weather looking for tomorrow
-how is the forcast looking for this week (just need to match the word forecast)
-add special things if weather is gonna be nice
-  ex; if temps over 60 in the forecast say, its gonna be nice on ____, high temps over 60!
 */
 
 var weatherFlag = 0;
@@ -86,7 +71,10 @@ recognition.onresult = function(event){
     if(saidWord.indexOf('new') !== -1){
       updateQuote();
     }
-    sayQuote();
+    if(saidWord.indexOf('read') !== -1){
+          sayQuote();
+    }
+
 
   }
   else if(saidWord.indexOf('timer') !== -1){
@@ -164,25 +152,45 @@ recognition.onresult = function(event){
   }
 
   else if(saidWord.indexOf('rain') !== -1){
-    sayRainChance();
+    if(saidWord.indexOf('percent') == -1){
+      sayRainChance();
+    }
   }
 
   else if(saidWord.indexOf('forecast') !== -1){
     toggleForecast();
   }
 
+  // else if(saidWord.indexOf('light') !== -1){
+  //   if(saidWord.indexOf('color') !== -1){
+  //     if(saidWord.indexOf('red') !== -1){
+  //       updateLights('red');
+  //     }
+  //     else if(saidWord.indexOf('orange') !== -1){
+  //       updateLights('orange');
+  //     }
+  //     else if(saidWord.indexOf('yellow') !== -1){
+  //       updateLights('yellow');
+  //     }
+  //     else if(saidWord.indexOf('green') !== -1){
+  //       updateLights('green');
+  //     }
+  //     else if(saidWord.indexOf('blue') !== -1){
+  //       updateLights('blue');
+  //     }
+  //     else if(saidWord.indexOf('purple') !== -1){
+  //       updateLights('purple');
+  //     }
+  //     else if(saidWord.indexOf('orange') !== -1){
+  //       updateLights('orange');
+  //     }
+  //   }
+  //   else if(saidWord.indexOf('animate') !== -1){
+  //     animateLights();
+  //   }
+  // }
 
-//need to add regex here to pick the symbol out, shouldnt be too bad
   else if(saidWord.indexOf('stock') !== -1){
-    // if(saidWord.indexOf('add') !== -1){
-    //   console.log(saidWord + 'index of add is: ' + saidWord.indexOf('add'));
-    //   console.log( "this should be GE: " + saidWord[4] );
-    //   alert("stock and add detected");
-    //   var symbol = saidWord[4] + saidWord[5];
-    //   alert(symbol);
-    //   $("#newstock").val(symbol);// = symbol;
-    //   addSymbol();
-    // }
     var regReturnStock = saidWord.match(/symbol\b \S{1,4}$/g);
     if(regReturnStock){
       //console.log(regReturnStock);
@@ -192,7 +200,6 @@ recognition.onresult = function(event){
       addSymbol();
     }
     
-
     else if(saidWord.indexOf('brief') !== -1){
      sayStocks(); 
     }
