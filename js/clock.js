@@ -26,6 +26,7 @@ var timerSounds = ["1", "2", "3", "4", "5", "6"];
 var curAlarm = "1";
 var dateString;
 var dateStringSay;
+var tempResp;
 
 $(document).ready(function() {  
   updateClock(); //Set initial time on page load
@@ -89,6 +90,7 @@ function updateClock(){
 function updateRoomTemp(){
 	//TODO: add an ajax call to read temp sensor and save the response for display
 	var roomtemp = 'BAD';
+	var fuckresp;
     // $.ajax(
     // {
     //     type: "GET",
@@ -101,19 +103,21 @@ function updateRoomTemp(){
     //     },
     // });
 
-    var req = new Request("http://localhost/cgi-bin/fuck");
+    var req = new Request("http://localhost/cgi-bin/tempTest.JSON");
     fetch(req)
-      //.then((resp) => resp.json())
+     .then((resp) => resp.json())
        .then(function(data) {
-
-          fuckresp = data;
-          roomtemp = data;
+	tempResp = data;
+		console.log(tempResp);
+          roomtemp = data[0].data + '&deg;'+' F';
+	console.log("roomtemp is: " + roomtemp);
+    $("#roomtemp").html(roomtemp);
        })
        .catch(function(err) {
         console.log('ERROR FETCHING FUCK DATA:', err);
         //$("#weather").html(html);
     });
-    $("#roomtemp").html(roomtemp);
+    //$("#roomtemp").html(roomtemp);
 }
 
 function sayCurrentTime(){
