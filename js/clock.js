@@ -88,8 +88,19 @@ function updateClock(){
 
 function updateRoomTemp(){
 	//TODO: add an ajax call to read temp sensor and save the response for display
-	var roomtemp = '76'  + '&deg;'+' F';
-	$("#roomtemp").html(roomtemp);
+	var roomtemp = 'BAD';
+    $.ajax(
+    {
+        type: "POST",
+        url: "cgi-bin/roomtemp.py",
+        dataType: "html",
+        success: function(msg)
+        {
+        //var roomtemp = '76'  + '&deg;'+' F';
+        roomtemp = msg;// + '&deg;'+' F';
+        },
+    });
+    $("#roomtemp").html(roomtemp);
 }
 
 function sayCurrentTime(){
