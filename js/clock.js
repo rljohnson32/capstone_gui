@@ -102,7 +102,7 @@ function sayCurrentTime(){
 		if (hour   > 11) { ap = "PM";             }
 		if (hour   > 12) { hour = hour - 12;      }
 		if (minute < 10) { minute = "0" + minute; }
-		var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting() + " Rob!";
+		var curTimeString = "It is " + hour + " " + minute + " " + ap + ". " + getGreeting();
 		responsiveVoice.speak(curTimeString, "US English Female");
 	}
 }

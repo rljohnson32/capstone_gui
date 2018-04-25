@@ -6,7 +6,7 @@ var json;
 var jsonN;
 var categories = ["business","entertainment","general","health","science","sports","technology"];
 var category = "none";
-var curLimit = 4;
+var curLimit = 3;
 var lastTimeNewsUpdated;
 var topThreeHeadlines = [];
 var lowerIndex = 0;
