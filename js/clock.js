@@ -89,16 +89,29 @@ function updateClock(){
 function updateRoomTemp(){
 	//TODO: add an ajax call to read temp sensor and save the response for display
 	var roomtemp = 'BAD';
-    $.ajax(
-    {
-        type: "GET",
-        url: "http://localhost/cgi-bin/fuck",
-        dataType: "text",
-        success: function(msg)
-        {
-        //var roomtemp = '76'  + '&deg;'+' F';
-        roomtemp = msg;// + '&deg;'+' F';
-        },
+    // $.ajax(
+    // {
+    //     type: "GET",
+    //     url: "http://localhost/cgi-bin/fuck",
+    //     dataType: "text",
+    //     success: function(msg)
+    //     {
+    //     //var roomtemp = '76'  + '&deg;'+' F';
+    //     roomtemp = msg;// + '&deg;'+' F';
+    //     },
+    // });
+
+    var req = new Request("http://localhost/cgi-bin/fuck");
+    fetch(req)
+      //.then((resp) => resp.json())
+       .then(function(data) {
+
+          fuckresp = data;
+          roomtemp = data;
+       })
+       .catch(function(err) {
+        console.log('ERROR FETCHING FUCK DATA:', err);
+        //$("#weather").html(html);
     });
     $("#roomtemp").html(roomtemp);
 }
