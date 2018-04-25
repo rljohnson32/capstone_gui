@@ -91,9 +91,9 @@ function updateRoomTemp(){
 	var roomtemp = 'BAD';
     $.ajax(
     {
-        type: "POST",
-        url: "cgi-bin/roomtemp.py",
-        dataType: "html",
+        type: "GET",
+        url: "http://localhost/cgi-bin/fuck",
+        dataType: "text",
         success: function(msg)
         {
         //var roomtemp = '76'  + '&deg;'+' F';
