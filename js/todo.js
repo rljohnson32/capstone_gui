@@ -73,6 +73,10 @@ function sayTodos(){
 	   var curTodo = table.rows[i].cells[0].innerHTML;
 	   todoStrings.push(curTodo);
 	}
+	if(todoStrings.length == 0){
+		responsiveVoice.speak("Your to-do list is empty.", "US English Female");
+		return;
+	}
 	responsiveVoice.speak("Reading your to-do list.", "US English Female");
 
 	for(var i = 0; i < todoStrings.length; i++){
