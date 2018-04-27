@@ -203,7 +203,64 @@ recognition.onresult = function(event){
     else if(saidWord.indexOf('brief') !== -1){
      sayStocks(); 
     }
-  }   
+  }
+
+  else if(saidWord.indexOf('do') !== -1){
+    if(saidWord.indexOf('add') !== -1){
+      var regReturnTodo = saidWord.match(/item[s]? (.+)/);
+      if(regReturnTodo){
+        $("#newtodo").val(regReturnTodo[1]);
+        addTodo();
+      }
+    }
+    var regReturnRead = saidWord.match(/what do i have to[-]?[ ]?do/g);
+    if(regReturnRead){
+     sayTodos(); 
+    }
+    if(saidWord.indexOf('remove') !== -1){
+      var regReturnRemove = saidWord.match(/(remove to[-]?[ ]?do( list)? item (number )?(one)?(two)?(three)?(four)?(five)?(six)?(seven)?(eight)?(nine)?(ten)?(\d+)?)/);
+      if(regReturnRemove){
+        var splitArrayR = regReturnRemove[0].split(' ');
+        var index = splitArrayR[splitArrayR.length - 1];
+        if(isNaN(index)){
+          if(index == 'one'){
+            index = 1;
+          }
+          else if(index == 'two'){
+            index = 2;
+          }
+          else if(index == 'three'){
+            index = 3;
+          }
+          else if(index == 'four'){
+            index = 4;
+          }
+          else if(index == 'five'){
+            index = 5;
+          }
+          else if(index == 'six'){
+            index = 6;
+          }
+          else if(index == 'seven'){
+            index = 7;
+          }
+          else if(index == 'eight'){
+            index = 8;
+          }
+          else if(index == 'nine'){
+            index = 9;
+          }
+          else if(index == 'ten'){
+            index = 10;
+          }
+        }
+        if(!isNaN(index) && index > 0){
+          findTodoRow(index);
+        }
+      }
+    } 
+  }
+
 }
 
 // speech error handling

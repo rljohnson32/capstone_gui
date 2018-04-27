@@ -106,6 +106,12 @@ function updateWeather(){
           var dayHigh;
           var dayLow; //need to put 2 spaces on the front of this string, see line 200 in gui.html
 
+          // var i = 0; 
+          // var rightnow    = new Date();
+          // var hournow   = rightnow.getHours();
+          // if(hournow > 12){
+          //   i = 1;
+          // }
           for(i = 1; i < 6; i++){
             day = forecast[i].date.weekday_short;
             daySymbol = forecast[i].icon_url;

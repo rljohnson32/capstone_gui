@@ -235,6 +235,17 @@
           </tr>
         </table>
       </div> -->
+      <div id="todo">
+        <table id="todolist" style="width: 250px">
+          <tr>
+            <th colspan="3"><span class="fa fa-list-ul" aria-hidden="true"></span>&nbsp&nbspTo Do<span onclick="toggleTodoForm()" id="todoPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
+          </tr>
+        </table>
+        <div id="todoForm" style="display:none">
+            <input type="text" size="17" id="newtodo" placeholder="Whatcha wanna do">
+            <input id='addtodobutton' type="submit" onclick="addTodo()" value="Add">
+        </div>
+      </div>
 
       <div id="calandar">
         <table id="eventlist">
@@ -278,6 +289,7 @@
     <script src="../js/clock.js"></script>
     <script src="../js/quote.js"></script>
     <script src="../js/stocks.js"></script>
+    <script src="../js/todo.js"></script>
     <script src="../js/voiceRecognition.js"></script>
     <!-- Google API -->
     <script async defer src="https://apis.google.com/js/api.js"

@@ -1,0 +1,30 @@
+        <!DOCTYPE html>
+<html>
+  <head>
+    <title>TABLE</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
+
+    <div id="todo">
+      <table id="todolist" style="width: 250px">
+        <tr>
+          <th colspan="3"><span class="fa fa-list-ul" aria-hidden="true"></span>&nbsp&nbspTo Do<span onclick="toggleTodoForm()" id="todoPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
+        </tr>
+      </table>
+      <div id="todoForm" style="display:none">
+          <input type="text" size="17" id="newtodo" placeholder="Whatcha wanna do">
+          <input id='addtodobutton' type="submit" onclick="addTodo()" value="Add">
+      </div>
+    </div>
+      <script src="../js/todo.js"></script>
+      <script src="../js/voiceRecognition.js"></script>
