@@ -33,7 +33,7 @@ $(document).ready(function() {
   updateRoomTemp();
   //updateGreeting();
   setInterval(updateClock, 1000); // update the time every second
-  setInterval(updateRoomTemp, 1*60000); //update room temp every 1 minutes
+  setInterval(updateRoomTemp, 1000*60); //update room temp every 1 minutes
 });
 
 function updateClock(){
@@ -103,18 +103,16 @@ function updateRoomTemp(){
     //     },
     // });
 
-    var req = new Request("http://localhost/cgi-bin/tempTest.JSON");
+    var req = new Request("http://localhost/resources/tempTest.JSON");
     fetch(req)
      .then((resp) => resp.json())
        .then(function(data) {
 	tempResp = data;
-		console.log(tempResp);
           roomtemp = data[0].data + '&deg;'+' F';
-	console.log("roomtemp is: " + roomtemp);
     $("#roomtemp").html(roomtemp);
        })
        .catch(function(err) {
-        console.log('ERROR FETCHING FUCK DATA:', err);
+        console.log('ERROR FETCHING TEMP DATA:', err);
         //$("#weather").html(html);
     });
     //$("#roomtemp").html(roomtemp);
