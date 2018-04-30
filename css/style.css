@@ -23,7 +23,7 @@ div#clock {
     /*width: 20%;*/
     /*background: red;*/
     float: left;
-    /*margin-right: 20px;*/
+    margin-right: 20px;
     /*width:165px;*/
     margin-bottom: 20px;
 }
@@ -439,6 +439,7 @@ th {
     float: right;
     /*border:1px solid black;*/
     margin-left: 20px;
+    margin-right: 50px;
   }
   #news h2{
     text-align: center;
@@ -518,6 +519,7 @@ th {
     /*float: left;*/
     /*float: top;*/
     margin-left: 20px;
+    float: right;
     /*width: 10%;*/
 }
 
