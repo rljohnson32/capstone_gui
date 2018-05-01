@@ -16,13 +16,24 @@ header {
 */
 
 body {
-  padding: 10px;
+  padding-top: 30px;
+}
+
+#rightCol{
+  float: right;
+  margin-right: 50px;
+}
+
+#leftCol{
+  float: left;
+  margin-left: 50px;
+  width: 25%;
 }
 
 div#clock {
     /*width: 20%;*/
     /*background: red;*/
-    float: left;
+    /*float: left;*/
     margin-right: 20px;
     /*width:165px;*/
     margin-bottom: 20px;
@@ -44,7 +55,7 @@ div#clock {
 }
 
 #calandar{
-  float:right;
+  /*float:right;*/
 }
 
 #calandarRefresh{
@@ -73,15 +84,15 @@ div#timer {
 }
 
 div#stocks {
-    /*width: 25%;*/
+    
     /*height: 110px;*/
 
 
     /*background: red;*/
     float: left;
-    float: top;
-    margin-left: 20px;
-    /*margin-bottom: 20px;*/
+    /*float: top;*/
+    /*margin-left: 20px;*/
+    margin-bottom: 40px;
 }
 
 
@@ -99,6 +110,7 @@ div#stocks {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
+    width: 200px;
     /*width: 100%;*/
 }
 
@@ -436,10 +448,12 @@ th {
   }*/
 
   #news{
-    float: right;
+    /*float: right;*/
     /*border:1px solid black;*/
     margin-left: 20px;
-    margin-right: 50px;
+    margin-bottom: 20px;
+    padding-bottom: 40px;
+    width: 400px;
   }
   #news h2{
     text-align: center;
@@ -513,14 +527,15 @@ th {
     width: 30%;
   }*/
 
-  div#calandar {
+  #calandar {
     /*width: 25%;*/
     /*background: red;*/
     /*float: left;*/
     /*float: top;*/
+    /*margin-left: 20px;*/
+    float: left;
+    width: 400px;
     margin-left: 20px;
-    float: right;
-    /*width: 10%;*/
 }
 
   #eventlist {
@@ -594,15 +609,16 @@ th {
 }
 
 div#todo {
-    /*width: 25%;*/
+
+    width: 200px;
     /*height: 110px;*/
 
 
     /*background: red;*/
     float: left;
-    float: top;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    /*float: top;*/
+    /*margin-left: 20px;
+    margin-bottom: 20px;*/
 }
 
   #todoForm{
@@ -611,9 +627,12 @@ div#todo {
   }
 
 #todolist {
+    width: 200px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-bottom: 5px;
+    /*table-layout:fixed;*/ 
+    /*word-break: break-all;*/ 
     /*width: 100%;*/
 }
 
@@ -621,6 +640,7 @@ div#todo {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 8px;
+    overflox: hidden;
 }
 
 /*#stocklist tr {
@@ -636,11 +656,11 @@ div#todo {
 }
 
 #todolist tr:hover i{
-  display: inline;
+  visibility: visible;
 }
 
 #todolist tr i{
-  display: none;
+  visibility: hidden;
   margin-left: 5px;
 }
 

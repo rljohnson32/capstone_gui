@@ -50,7 +50,7 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          setInterval(listUpcomingEvents, 30*60000); //Update the events every 30 minutes.
+          //setInterval(listUpcomingEvents, 30*60000); //Update the events every 30 minutes.
           listUpcomingEvents();
         } else {
           authorizeButton.style.display = 'block';

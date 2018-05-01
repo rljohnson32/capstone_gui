@@ -30,7 +30,7 @@ function updateStocks(button){
   if (minute < 10) { minute = "0" + minute; }
 
 
-  if(shouldUpdate || !updatedOnce || button){ //don't undate after 6PM unless page just loaded or the refresh button was clicked
+  if(shouldUpdate || !updatedOnce || button){ //don't update after 6PM unless page just loaded or the refresh button was clicked
     updatedOnce = true;
     $('#lastStockUpdate').html(hour + ':' + minute + ' ' + ap);
 
@@ -99,7 +99,7 @@ function updateStocks(button){
           }
        })
        .catch(function(err) {
-        console.log('ERROR FETCHING DOW DATA:', err);
+        console.log('ERROR FETCHING NASDAQ DATA:', err);
         //$("#weather").html(html);
     });
 
@@ -134,7 +134,7 @@ function updateStocks(button){
           }
        })
        .catch(function(err) {
-        console.log('ERROR FETCHING DOW DATA:', err);
+        console.log('ERROR FETCHING SP500 DATA:', err);
         //$("#weather").html(html);
     });
     updateAdded();

@@ -215,7 +215,7 @@ function sayCurrentWeather(){
 }
 
 function sayRainChance(){
-  var rainString = "There is a " + rainPercent + " chance of rain today in " + curCity + ".";
+  var rainString = "There is currently a " + rainPercent + " chance of rain in " + curCity + ".";
   responsiveVoice.speak(rainString, "US English Female");
 }
 

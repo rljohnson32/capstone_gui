@@ -18,96 +18,53 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
 <!--     <header> -->
-      <div id="leftCol">
-        <div id="clock">
-          <p id="date"></p>
-          <p id="timeString"></p>
-          <p id="roomtempstring">Room Temp: <span id="roomtemp"></span></p>
-          <!-- <p id="greeting"></p> -->
-          <div id="countdown"></div>
-        </div>
+      <div id="clock">
+        <p id="date"></p>
+        <p id="timeString"></p>
+        <p id="roomtempstring">Room Temp: <span id="roomtemp"></span></p>
+        <!-- <p id="greeting"></p> -->
+        <div id="countdown"></div>
+      </div>
 
-        <div id="timer" style="display:none">
-          <table id="timerlist">
-            <tr>
-              <th id="timerheader" colspan="2"><span class="fa fa-clock-o" aria-hidden="true"></span>&nbsp&nbspTimer&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-              <span id="timerPlus" onclick="toggleTimerForm()" class="fa fa-plus-circle" aria-hidden="true"></span>
-              </th>
-            </tr>
-            <tr></tr>
-            <tr id="minuterow" style="display:none">
-              <td class="mrow">Minutes:</td>
-              <td><input type="text" size="4" maxlength="2" max="59" id="minsfortimer" class="mrow" placeholder="0-59"></td>
-            </tr>
-            <tr id="secondrow" style="display:none">
-              <td>Seconds:</td>
-              <td><input type="text" size="4" maxlength="2" max="59" id="secsfortimer" placeholder="0-59"></td>
-            </tr>
-            <tr id="selectrow" style="display:none">
-              <td><select id="soundPicker" oninput="updateSound()">
-                        <option value="1"> Default<br>
-                        <option value="2"> Watch<br>
-                        <option value="3"> Alien<br>
-                        <option value="4"> Bomb Siren<br>
-                        <option value="5"> Fire<br>
-                        <option value="6"> Rooster<br>
-          </select></td>
-          
-            </tr>
-            <tr>
-              <td id="inputrow" style="display:none"><input type="submit" onclick="setTimer()" value="Set"></br></td>
-            </tr>
-          </table>
+      <div id="timer" style="display:none">
+        <table id="timerlist">
+          <tr>
+            <th id="timerheader" colspan="2"><span class="fa fa-clock-o" aria-hidden="true"></span>&nbsp&nbspTimer&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <span id="timerPlus" onclick="toggleTimerForm()" class="fa fa-plus-circle" aria-hidden="true"></span>
+            </th>
+          </tr>
+          <tr></tr>
+          <tr id="minuterow" style="display:none">
+            <td class="mrow">Minutes:</td>
+            <td><input type="text" size="4" maxlength="2" max="59" id="minsfortimer" class="mrow" placeholder="0-59"></td>
+          </tr>
+          <tr id="secondrow" style="display:none">
+            <td>Seconds:</td>
+            <td><input type="text" size="4" maxlength="2" max="59" id="secsfortimer" placeholder="0-59"></td>
+          </tr>
+          <tr id="selectrow" style="display:none">
+            <td><select id="soundPicker" oninput="updateSound()">
+                      <option value="1"> Default<br>
+                      <option value="2"> Watch<br>
+                      <option value="3"> Alien<br>
+                      <option value="4"> Bomb Siren<br>
+                      <option value="5"> Fire<br>
+                      <option value="6"> Rooster<br>
+        </select></td>
+        
+          </tr>
+          <tr>
+            <td id="inputrow" style="display:none"><input type="submit" onclick="setTimer()" value="Set"></br></td>
+          </tr>
+        </table>
 
-          <div id="countdown"></div>
-          <audio id="alarm1" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
-          <audio id="alarm2" src="../resources/analog-watch-alarm_daniel-simion.wav" preload="auto"></audio>
-          <audio id="alarm3" src="../resources/Alien_Siren-KevanGC-610357990.wav" preload="auto"></audio>
-          <audio id="alarm4" src="../resources/BOMB_SIREN-BOMB_SIREN-247265934.wav" preload="auto"></audio>
-          <audio id="alarm5" src="../resources/Fire Alarm-SoundBible.com-78848779.wav" preload="auto"></audio>
-          <audio id="alarm6" src="../resources/Rooster-SoundBible.com-1114473528.wav" preload="auto"></audio>
-        </div>
-
-        <div id="stocks">
-          <table id="stocklist">
-            <tr>
-              <th colspan="3"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp&nbspStocks<span onclick="toggleStockForm()" id="stockPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
-            </tr>
-            <tr>
-              <td>DOW J</td>
-              <td id="DJI"></td>
-              <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-            </tr>
-            <tr>
-              <td>NASDAQ</td>
-              <td id="IXIC"></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>S&P 500</td>
-              <td id="GSPC"></td>
-              <td></td>
-            </tr>
-          </table>
-          <span style="font-size:15px;color:white">Updated: <span id="lastStockUpdate"></span><span onclick="updateStocks(1)" id="stockRefresh" class="fa fa-refresh" style="float:right; padding-top:5px" aria-hidden="true"></span></span></br>
-
-          <div id="stockForm" style="display:none">
-              <input type="text" size="6" maxlength="5" id="newstock" placeholder="Symbol">
-              <input id='addstockbutton' type="submit" onclick="addSymbol()" value="Add">
-          </div>
-        </div>
-
-        <div id="todo">
-          <table id="todolist"">
-            <tr>
-              <th colspan="3"><span class="fa fa-list-ul" aria-hidden="true"></span>&nbsp&nbspTo Do<span onclick="toggleTodoForm()" id="todoPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
-            </tr>
-          </table>
-          <div id="todoForm" style="display: none">
-              <input type="text" size="17" id="newtodo" placeholder="Whatcha wanna do">
-              <input id='addtodobutton' type="submit" onclick="addTodo()" value="Add">
-          </div>
-        </div>
+        <div id="countdown"></div>
+        <audio id="alarm1" src="../resources/Annoying_Alarm_Clock-UncleKornicob-420925725.wav" preload="auto"></audio>
+        <audio id="alarm2" src="../resources/analog-watch-alarm_daniel-simion.wav" preload="auto"></audio>
+        <audio id="alarm3" src="../resources/Alien_Siren-KevanGC-610357990.wav" preload="auto"></audio>
+        <audio id="alarm4" src="../resources/BOMB_SIREN-BOMB_SIREN-247265934.wav" preload="auto"></audio>
+        <audio id="alarm5" src="../resources/Fire Alarm-SoundBible.com-78848779.wav" preload="auto"></audio>
+        <audio id="alarm6" src="../resources/Rooster-SoundBible.com-1114473528.wav" preload="auto"></audio>
       </div>
 
       <div id="weatherTable">
@@ -235,6 +192,66 @@
           </table>
           <span id="loadMoreNews" onclick="showMore()" style="color:white; float:left; padding-bottom:20px">More</span>
         </div>
+
+<!--       <div id="stocks">
+        <table id="stocklist">
+          <tr>
+            <th colspan="3"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp&nbspStocks<span onclick="toggleStockForm()" id="stockPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
+          </tr>
+          <tr>
+            <td>DOW J</td>
+            <td id="DJI"></td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+          </tr>
+          <tr>
+            <td>NASDAQ</td>
+            <td id="IXIC"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>S&P 500</td>
+            <td id="GSPC"></td>
+            <td></td>
+          </tr>
+        </table>
+        <i style="font-size:15px;color:white">Updated: <span id="lastStockUpdate"></span><span onclick="updateStocks(1)" id="stockRefresh" class="fa fa-refresh" style="float:right; padding-top:5px" aria-hidden="true"></i></br>
+
+        <div id="stockForm" style="display:none">
+            <input type="text" size="6" maxlength="5" id="newstock" placeholder="Symbol">
+            <input id='addstockbutton' type="submit" onclick="addSymbol()" value="Add">
+        </div>
+      </div> -->
+      
+
+
+
+
+<!--       <div id="quote">
+        <table id="quotelist">
+          <tr>
+            <th id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
+            </th>
+          </tr>
+          <tr>
+            <td id="quoteText"></td>
+          </tr>
+          <tr>
+            <td id="authorName"></td>
+          </tr>
+        </table>
+      </div> -->
+      <!-- <div id="todo">
+        <table id="todolist" style="width: 250px">
+          <tr>
+            <th colspan="3"><span class="fa fa-list-ul" aria-hidden="true"></span>&nbsp&nbspTo Do<span onclick="toggleTodoForm()" id="todoPlus" class="fa fa-plus-circle" aria-hidden="true"></span></th>
+          </tr>
+        </table>
+        <div id="todoForm" style="display:none">
+            <input type="text" size="17" id="newtodo" placeholder="Whatcha wanna do">
+            <input id='addtodobutton' type="submit" onclick="addTodo()" value="Add">
+        </div>
+      </div> -->
+
         <div id="calandar">
           <table id="eventlist">
             <tr>
@@ -250,23 +267,8 @@
           </br>
         </div>
       </div>
-    
-<!--       <div id="quote">
-        <table id="quotelist">
-          <tr>
-            <th id="quoteHeader"><span class="fa fa-quote-right" aria-hidden="true"></span>&nbsp&nbspQuote<span onclick="updateQuote()" id="quoteShuffle" class="fa fa-random" aria-hidden="true"></span>
-            </th>
-          </tr>
-          <tr>
-            <td id="quoteText"></td>
-          </tr>
-          <tr>
-            <td id="authorName"></td>
-          </tr>
-        </table>
-      </div> -->
 
-      <div id="footer">
+      <!-- <div id="footer">
         <div id="center">
             <div id="quote">
               <table id="quotelist">
@@ -283,7 +285,7 @@
               </table>
             </div>
         </div>
-    </div>
+    </div> -->
 <!--     </header> -->
 
     <!-- Custom JS files -->

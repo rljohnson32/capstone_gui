@@ -74,7 +74,7 @@ function sayTodos(){
 	   todoStrings.push(curTodo);
 	}
 	if(todoStrings.length == 0){
-		responsiveVoice.speak("Your to-do list is empty.", "US English Female");
+		responsiveVoice.speak("Your to do list is currently empty.", "US English Female");
 		return;
 	}
 	responsiveVoice.speak("Reading your to-do list.", "US English Female");

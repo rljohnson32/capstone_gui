@@ -164,7 +164,7 @@ function toggleNewsForm() {
 //lol this is hacky af
 function clearNewsList(){
   topThreeHeadlines = [];
-  var html = '<table id="newslist"><tr><th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews<span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true"></span><span id="lastNewsUpdate" style="color:grey; float:right"></span></th></tr></table>        <span id="loadMoreNews" onclick="showMore()" style="color:grey; float:left; padding-bottom:20px">More</span>';
+  var html = '<table id="newslist"><tr><th colspan="2" id="newsHeader"><span class="fa fa-newspaper-o" aria-hidden="true" onclick="toggleNewsForm()"></span>&nbsp&nbspNews<span onclick="updateNews()" id="newsRefresh" class="fa fa-refresh" aria-hidden="true"></span><span id="lastNewsUpdate" style="color:white; float:right; font-size:15px"></span></th></tr></table>        <span id="loadMoreNews" onclick="showMore()" style="color:white; float:left; padding-bottom:20px">More</span>';
   $("#news").html(html);
 }
 

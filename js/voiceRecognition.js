@@ -48,8 +48,14 @@ recognition.onresult = function(event){
     
     var regReturnZip = saidWord.match(/\d{5}/g);
     if(regReturnZip){
-      $("#zip").val(regReturnZip);
-      getZip();
+      if(regReturnZip != $("#zip").val()){
+        $("#zip").val(regReturnZip);
+        getZip();
+      }
+      else{
+        return;
+      }
+
     }
 
     var regReturnLocation = saidWord.match(/in \w+ \w+/g);
@@ -143,7 +149,7 @@ recognition.onresult = function(event){
 
   }
 
-  else if(saidWord.indexOf('time') !== -1){
+  else if(saidWord.indexOf('what time is') !== -1){
     sayCurrentTime();
   }
 
@@ -152,7 +158,7 @@ recognition.onresult = function(event){
   }
 
   else if(saidWord.indexOf('rain') !== -1){
-    if(saidWord.indexOf('percent') == -1){
+    if((saidWord.indexOf('percent') == -1) && (saidWord.indexOf('today in') == -1)){
       sayRainChance();
     }
   }
@@ -218,7 +224,7 @@ recognition.onresult = function(event){
      sayTodos(); 
     }
     if(saidWord.indexOf('remove') !== -1){
-      var regReturnRemove = saidWord.match(/(remove to[-]?[ ]?do( list)? item (number )?(one)?(two)?(three)?(four)?(five)?(six)?(seven)?(eight)?(nine)?(ten)?(\d+)?)/);
+      var regReturnRemove = saidWord.match(/(move to[-]?[ ]?do( list)? item (number )?(one)?(won)?(two)?(to)?(too)?(three)?(four)?(five)?(six)?(seven)?(eight)?(nine)?(ten)?(\d+)?)/);
       if(regReturnRemove){
         var splitArrayR = regReturnRemove[0].split(' ');
         var index = splitArrayR[splitArrayR.length - 1];
