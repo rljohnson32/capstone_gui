@@ -95,7 +95,7 @@ function updateStocks(button){
             document.getElementById('IXIC').style.color = "red";
           }
           else{
-            document.getElementById('IXIC').style.color = "green";
+            document.getElementById('IXIC').style.color = "#00ff00";
           }
        })
        .catch(function(err) {
@@ -113,9 +113,9 @@ function updateStocks(button){
           var timeSeries = data['Time Series (Daily)'];
           var metadata = data['Meta Data'];
           var today = metadata['3. Last Refreshed'].substring(0,10);//substring0-10;
-          if(lastClose == ''){
-            lastClose = setLastClose(today);
-          }
+          //if(lastClose == ''){
+          lastClose = setLastClose(today);
+          //}
           var todayData = timeSeries[today];
           var lastData = timeSeries[lastClose];
           var close = todayData['4. close'];
@@ -130,7 +130,7 @@ function updateStocks(button){
             document.getElementById('GSPC').style.color = "red";
           }
           else{
-            document.getElementById('GSPC').style.color = "green";
+            document.getElementById('GSPC').style.color = "#00ff00";
           }
        })
        .catch(function(err) {
@@ -216,7 +216,7 @@ function updateAddedHTML(curURL, curSymbol){
           document.getElementById(curSymbol).style.color = "red";
         }
         else{
-          document.getElementById(curSymbol).style.color = "green";
+          document.getElementById(curSymbol).style.color = "#00ff00";
         }
      })
      .catch(function(err) {

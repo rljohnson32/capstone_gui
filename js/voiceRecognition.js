@@ -167,35 +167,6 @@ recognition.onresult = function(event){
     toggleForecast();
   }
 
-  // else if(saidWord.indexOf('light') !== -1){
-  //   if(saidWord.indexOf('color') !== -1){
-  //     if(saidWord.indexOf('red') !== -1){
-  //       updateLights('red');
-  //     }
-  //     else if(saidWord.indexOf('orange') !== -1){
-  //       updateLights('orange');
-  //     }
-  //     else if(saidWord.indexOf('yellow') !== -1){
-  //       updateLights('yellow');
-  //     }
-  //     else if(saidWord.indexOf('green') !== -1){
-  //       updateLights('green');
-  //     }
-  //     else if(saidWord.indexOf('blue') !== -1){
-  //       updateLights('blue');
-  //     }
-  //     else if(saidWord.indexOf('purple') !== -1){
-  //       updateLights('purple');
-  //     }
-  //     else if(saidWord.indexOf('orange') !== -1){
-  //       updateLights('orange');
-  //     }
-  //   }
-  //   else if(saidWord.indexOf('animate') !== -1){
-  //     animateLights();
-  //   }
-  // }
-
   else if(saidWord.indexOf('stock') !== -1){
     var regReturnStock = saidWord.match(/symbol\b \S{1,4}$/g);
     if(regReturnStock){
@@ -266,6 +237,35 @@ recognition.onresult = function(event){
       }
     } 
   }
+
+    // else if(saidWord.indexOf('light') !== -1){
+  //   if(saidWord.indexOf('color') !== -1){
+  //     if(saidWord.indexOf('red') !== -1){
+  //       updateLights('red');
+  //     }
+  //     else if(saidWord.indexOf('orange') !== -1){
+  //       updateLights('orange');
+  //     }
+  //     else if(saidWord.indexOf('yellow') !== -1){
+  //       updateLights('yellow');
+  //     }
+  //     else if(saidWord.indexOf('green') !== -1){
+  //       updateLights('green');
+  //     }
+  //     else if(saidWord.indexOf('blue') !== -1){
+  //       updateLights('blue');
+  //     }
+  //     else if(saidWord.indexOf('purple') !== -1){
+  //       updateLights('purple');
+  //     }
+  //     else if(saidWord.indexOf('orange') !== -1){
+  //       updateLights('orange');
+  //     }
+  //   }
+  //   else if(saidWord.indexOf('animate') !== -1){
+  //     animateLights();
+  //   }
+  // }
 
 }
 
