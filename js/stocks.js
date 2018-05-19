@@ -119,7 +119,8 @@ function updateStocks(button){
           var todayData = timeSeries[today];
           var lastData = timeSeries[lastClose];
           var close = todayData['4. close'];
-          var prevClose = lastData['4. close'];
+          //var prevClose = lastData['4. close'];
+	  var prevClose = 2635.67;
           var cur = close - prevClose;
           var curPercent = (cur / prevClose)*100;
           var curPercentRounded = (Math.round(100*curPercent)/100).toFixed(2);

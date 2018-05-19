@@ -21,13 +21,13 @@ body {
 
 #rightCol{
   float: right;
-  margin-right: 50px;
+  margin-right: 70px;
 }
 
 #leftCol{
   float: left;
-  margin-left: 50px;
-  width: 25%;
+  margin-left: 25px;
+  width: 20%;
 }
 
 div#clock {
@@ -589,7 +589,7 @@ th {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
     margin-top: 10px;
 }
 
