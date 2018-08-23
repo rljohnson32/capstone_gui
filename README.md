@@ -8,3 +8,4 @@ To run GUI:
 ```
 Navigate to: http://localhost:8000/html/gui.html
 
+[Click for demonstration of most (but not all) UI features](https://youtu.be/SqyiMIFBvYQ?list=FLDefQVikphGUBVoOqKgrO7g&t=296)
